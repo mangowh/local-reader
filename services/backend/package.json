@@ -1,11 +1,21 @@
 {
   "name": "backend",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "tsc --noEmit",
+    "start": "ts-node --transpileOnly src/index.ts",
+    "dev": "ts-node ./src/index.ts",
+    "migrate": "drizzle-kit generate:mysql"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "drizzle-orm": "^0.30.9",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "drizzle-kit": "^0.20.17",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
 }
