@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine as base
 
 RUN mkdir /home/node/app && chown node:node /home/node/app
 RUN mkdir /home/node/app/node_modules && chown node:node /home/node/app/node_modules
@@ -13,4 +13,5 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
-EXPOSE 4200
+EXPOSE 3000
+ENTRYPOINT [ "npm", "run", "start"]

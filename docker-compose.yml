@@ -5,6 +5,17 @@ services:
     command: sh -c "npm start"
     ports:
       - 4200:4200
+    restart: always
+
+  backend:
+    build: ./services/backend
+    working_dir: /home/node/app
+    command: sh -c "npm start"
+    environment:
+      - DB_HOST=database
+    ports:
+      - 3000:3000
+    restart: always
 
   database:
     image: mysql:8
@@ -16,3 +27,4 @@ services:
       - ./services/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 3306:3306
+    restart: always
