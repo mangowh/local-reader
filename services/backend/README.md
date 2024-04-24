@@ -1,0 +1,1 @@
+.env committato a puro scopo dimostrativo

@@ -2,11 +2,13 @@
   "name": "backend",
   "scripts": {
     "check": "tsc --noEmit",
-    "start": "ts-node --transpileOnly src/index.ts",
-    "dev": "ts-node ./src/index.ts",
-    "migrate": "drizzle-kit generate:mysql"
+    "start": "npm run migration:apply && ts-node --transpileOnly src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node ./src/index.ts",
+    "migration:generate": "drizzle-kit generate:mysql",
+    "migration:apply": "ts-node ./scripts/migrate.ts"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.9",
     "express": "^4.19.2",
     "mysql2": "^3.9.7"
@@ -14,6 +16,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
+    "cross-env": "^7.0.3",
     "drizzle-kit": "^0.20.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
