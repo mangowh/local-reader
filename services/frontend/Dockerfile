@@ -1,16 +1,31 @@
-FROM node:20-alpine
-
-RUN mkdir /home/node/app && chown node:node /home/node/app
-RUN mkdir /home/node/app/node_modules && chown node:node /home/node/app/node_modules
+FROM node:20-alpine as base
 
 WORKDIR  /home/node/app
 
-USER node
-
-COPY --chown=node:node package.json package-lock.json ./
+COPY package.json package-lock.json ./
 
 RUN npm ci
 
-COPY --chown=node:node . .
+COPY . .
 
-EXPOSE 4200
+
+
+FROM node:20-alpine as builder
+
+WORKDIR  /home/node/app
+
+COPY --from=base /home/node/app .
+
+RUN npm run build
+
+
+FROM nginx:alpine
+
+VOLUME /var/cache/nginx
+
+COPY --from=builder /home/node/app/dist/app/browser /usr/share/nginx/html
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+
+EXPOSE 80
