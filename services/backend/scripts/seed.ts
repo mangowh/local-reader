@@ -2,7 +2,7 @@ import "dotenv/config";
 
 import { faker } from "@faker-js/faker";
 import * as mysql from "mysql2/promise";
-import { users } from "../src/db/schema";
+import { books, users } from "../src/db/schema";
 import { dbConfig } from "../src/config";
 import { drizzle } from "drizzle-orm/mysql2";
 
@@ -10,7 +10,9 @@ const main = async () => {
   const connection = await mysql.createConnection(dbConfig);
   const db = drizzle(connection, { logger: true });
 
-  const data: (typeof users.$inferInsert)[] = [
+  console.log("\nSeeding del database...\n");
+
+  const usersData: (typeof users.$inferInsert)[] = [
     {
       firstName: "Hastega1",
       lastName: "Hastega1",
@@ -25,11 +27,22 @@ const main = async () => {
     },
   ];
 
-  console.log("Seed start");
+  await db.insert(users).values(usersData);
 
-  await db.insert(users).values(data);
+  const booksData: (typeof books.$inferInsert)[] = [];
 
-  console.log("Seed done");
+  for (let i = 0; i < 20; i++) {
+    booksData.push({
+      title: faker.lorem.sentence({ min: 1, max: 10 }),
+      author: faker.person.fullName(),
+      isbn: faker.commerce.isbn(),
+      plot: faker.lorem.paragraph(),
+    });
+  }
+
+  await db.insert(books).values(booksData);
+
+  console.log("\nSeeding completato!\n");
 
   await connection.end();
 };

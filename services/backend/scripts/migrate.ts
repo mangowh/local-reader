@@ -10,11 +10,11 @@ import { dbConfig } from "../src/config";
   const connection = await mysql.createConnection(dbConfig);
   const db = drizzle(connection, { logger: true });
 
-  console.log("Applico migrazioni...");
+  console.log("\nApplico migrazioni...\n");
 
   await migrate(db, { migrationsFolder: path.join(__dirname, "../drizzle") });
 
-  console.log("Migrazioni applicate!\n");
+  console.log("\nMigrazioni applicate!\n");
 
   await connection.end();
 })();

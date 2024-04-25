@@ -67,6 +67,7 @@ export const libraries = mysqlTable(
 export const books = mysqlTable("books", {
   id: serial("id").primaryKey(),
 
+  title: varchar("title", { length: 255 }).notNull(),
   author: varchar("author", { length: 255 }).notNull(),
   isbn: varchar("isbn", { length: 20 }).notNull(),
 

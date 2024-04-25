@@ -33,7 +33,7 @@ const main = async () => {
   const server = new ApolloServer({ schema });
   const { url } = await startStandaloneServer(server, { listen: { port } });
 
-  console.log(`API GraphQL in ascolto su ${url}`);
+  console.log(`\nAPI GraphQL in ascolto su ${url}\n`);
 };
 
 main();
