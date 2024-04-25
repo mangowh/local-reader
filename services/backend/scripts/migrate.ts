@@ -8,8 +8,7 @@ import { dbConfig } from "../src/config";
 
 (async () => {
   const connection = await mysql.createConnection(dbConfig);
-
-  const db = drizzle(connection);
+  const db = drizzle(connection, { logger: true });
 
   console.log("Applico migrazioni...");
 

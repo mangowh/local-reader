@@ -5,9 +5,11 @@
     "start": "npm run migration:apply && ts-node --transpileOnly src/index.ts",
     "dev": "cross-env NODE_ENV=development ts-node ./src/index.ts",
     "migration:generate": "drizzle-kit generate:mysql",
-    "migration:apply": "ts-node ./scripts/migrate.ts"
+    "migration:apply": "ts-node ./scripts/migrate.ts",
+    "db:seed": "ts-node ./scripts/seed.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.9",
