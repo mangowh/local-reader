@@ -15,6 +15,13 @@
       "when": 1714034971628,
       "tag": "0001_lush_ravenous",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714052357580,
+      "tag": "0002_solid_randall_flagg",
+      "breakpoints": true
     }
   ]
 }

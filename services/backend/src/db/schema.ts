@@ -44,6 +44,27 @@ export const readings = mysqlTable(
   }
 );
 
+export const libraries = mysqlTable(
+  "libraries",
+  {
+    userId: bigint("user_id", { mode: "number", unsigned: true }).references(
+      () => users.id
+    ),
+    bookId: bigint("book_id", { mode: "number", unsigned: true }).references(
+      () => books.id
+    ),
+
+    creationDate: timestamp("creation_date")
+      .notNull()
+      .default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => {
+    return {
+      pk: primaryKey({ columns: [table.userId, table.bookId] }),
+    };
+  }
+);
+
 export const books = mysqlTable("books", {
   id: serial("id").primaryKey(),
 

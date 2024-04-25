@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import * as mysql from "mysql2/promise";
 import { dbConfig, isDev } from "./config";
-import { User, books, readings, users } from "./db/schema";
+import { User, books, libraries, readings, users } from "./db/schema";
 import { eq } from "drizzle-orm/sql";
 
 const port = 3000;
@@ -28,12 +28,19 @@ const main = async () => {
     res.json(result);
   });
 
-  app.get("/api/v1/getAll", async (req, res) => {
+  app.get("/api/v1/get-user-library", async (req, res) => {
+    const userId = req.query.userId as string | undefined;
+
+    if (!userId) {
+      return res.sendStatus(400);
+    }
+
     const result = await db
       .select()
-      .from(readings)
-      .leftJoin(users, eq(readings.userId, users.id))
-      .leftJoin(books, eq(books.id, readings.bookId));
+      .from(libraries)
+      .innerJoin(users, eq(libraries.userId, users.id))
+      .innerJoin(books, eq(libraries.bookId, books.id))
+      .where(eq(users.id, parseInt(userId)));
 
     res.json(result);
   });
