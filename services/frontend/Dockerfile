@@ -8,6 +8,7 @@ RUN npm ci
 
 COPY . .
 
+ENTRYPOINT [ "tail", "-f", "/dev/null" ]
 
 
 FROM node:20-alpine as builder

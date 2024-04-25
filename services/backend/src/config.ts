@@ -9,3 +9,5 @@ export const dbConfig = {
 
   database: process.env.DB_NAME,
 } satisfies ConnectionOptions;
+
+export const isDev = process.env.NODE_ENV === "development";

@@ -2,8 +2,9 @@ import "dotenv/config";
 
 import { drizzle } from "drizzle-orm/mysql2";
 import express from "express";
+import cors from "cors";
 import * as mysql from "mysql2/promise";
-import { dbConfig } from "./config";
+import { dbConfig, isDev } from "./config";
 import { User, users } from "./db/schema";
 
 const port = 3000;
@@ -15,6 +16,10 @@ const main = async () => {
   const connection = await mysql.createConnection(dbConfig);
 
   const db = drizzle(connection);
+
+  if (isDev) {
+    app.use(cors());
+  }
 
   app.get("/api/v1/users", async (req, res) => {
     const result: User[] = await db.select().from(users);
@@ -28,6 +33,12 @@ const main = async () => {
 
   app.listen(port, () => {
     console.log(`In ascolto su porta ${port}`);
+
+    if(!isDev) {
+      console.log("Avviato in modalità produzione")
+    } else {
+      console.log("Avviato in modalità sviluppo")
+    }
   });
 };
 

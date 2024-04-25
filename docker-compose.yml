@@ -11,8 +11,9 @@ services:
     build: ./services/backend
     environment:
       - DB_HOST=database
+      - NODE_ENV=development # DISABILITARE IN PRODUZIONE
     ports:
-      - 3000:3000
+      - 3000:3000  # DISABILITARE IN PRODUZIONE
     restart: always
 
   database:
