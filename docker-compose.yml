@@ -3,12 +3,12 @@ services:
     build: ./services/frontend
     ports:
       - 8080:80
+    volumes:
+      - ./data/frontend/nginx-cache:/var/cache/nginx
     restart: always
 
   backend:
     build: ./services/backend
-    working_dir: /home/node/app
-    command: sh -c "npm start"
     environment:
       - DB_HOST=database
     ports:
@@ -20,9 +20,9 @@ services:
     environment:
       - MYSQL_DATABASE=hastega
       - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306 # DISABILITARE IN PRODUZIONE
     volumes:
       - ./data/database:/var/lib/mysql
       - ./services/database/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - 3306:3306
     restart: always
