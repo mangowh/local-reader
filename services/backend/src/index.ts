@@ -1,12 +1,14 @@
 import "dotenv/config";
 
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import cors from "cors";
+import { buildSchema } from "drizzle-graphql";
 import { drizzle } from "drizzle-orm/mysql2";
 import express from "express";
-import cors from "cors";
 import * as mysql from "mysql2/promise";
 import { dbConfig, isDev } from "./config";
-import { User, books, libraries, readings, users } from "./db/schema";
-import { eq } from "drizzle-orm/sql";
+import * as dbSchema from "./db/schema";
 
 const port = 3000;
 
@@ -16,48 +18,22 @@ app.use(express.json());
 const main = async () => {
   const connection = await mysql.createConnection(dbConfig);
 
-  const db = drizzle(connection, { logger: isDev });
+  const db = drizzle(connection, {
+    schema: dbSchema,
+    mode: "default",
+    logger: isDev,
+  });
+
+  const { schema } = buildSchema(db);
 
   if (isDev) {
     app.use(cors());
   }
 
-  app.get("/api/v1/users", async (req, res) => {
-    const result: User[] = await db.select().from(users);
+  const server = new ApolloServer({ schema });
+  const { url } = await startStandaloneServer(server, { listen: { port } });
 
-    res.json(result);
-  });
-
-  app.get("/api/v1/get-user-library", async (req, res) => {
-    const userId = req.query.userId as string | undefined;
-
-    if (!userId) {
-      return res.sendStatus(400);
-    }
-
-    const result = await db
-      .select()
-      .from(libraries)
-      .innerJoin(users, eq(libraries.userId, users.id))
-      .innerJoin(books, eq(libraries.bookId, books.id))
-      .where(eq(users.id, parseInt(userId)));
-
-    res.json(result);
-  });
-
-  app.get("/", (req, res) => {
-    res.send("Ciao Hastega!");
-  });
-
-  app.listen(port, () => {
-    console.log(`In ascolto su porta ${port}`);
-
-    if (!isDev) {
-      console.log("Avviato in modalità produzione");
-    } else {
-      console.log("Avviato in modalità sviluppo");
-    }
-  });
+  console.log(`API GraphQL in ascolto su ${url}`);
 };
 
 main();

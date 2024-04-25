@@ -1,22 +1,16 @@
 import { Component } from "@angular/core";
-import { ApiService } from "../../services/api.service";
-import { JsonPipe } from "@angular/common";
+import { UsersService } from "../../services/users.service";
+import { AsyncPipe, JsonPipe } from "@angular/common";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [JsonPipe],
+  imports: [AsyncPipe, JsonPipe],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
 })
 export class HomeComponent {
-  users: any = [];
+  users$ = this.usersService.users$;
 
-  constructor(private api: ApiService) {}
-
-  ngOnInit() {
-    this.api.getUsers().subscribe((res) => {
-      this.users = res;
-    });
-  }
+  constructor(private usersService: UsersService) {}
 }

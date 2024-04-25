@@ -6,7 +6,8 @@
     "start": "ng serve --configuration development --host=0.0.0.0 --disable-host-check",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "generate": "graphql-codegen --config codegen.ts"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +19,9 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@apollo/client": "^3.0.0",
+    "apollo-angular": "^7.0.0",
+    "graphql": "^16",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -26,6 +30,10 @@
     "@angular-devkit/build-angular": "^17.3.5",
     "@angular/cli": "^17.3.5",
     "@angular/compiler-cli": "^17.3.0",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-apollo-angular": "4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -33,6 +41,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.2"
+    "typescript": "~5.4.2",
+    "@graphql-codegen/fragment-matcher": "5.0.2"
   }
 }
