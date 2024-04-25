@@ -1,12 +1,11 @@
 import {
-  int,
+  bigint,
   mysqlTable,
   primaryKey,
   serial,
-  bigint,
   text,
   timestamp,
-  varchar,
+  varchar
 } from "drizzle-orm/mysql-core";
 import { sql } from "drizzle-orm/sql";
 
