@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1713978631581,
-      "tag": "0000_many_stardust",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1714034971628,
-      "tag": "0001_lush_ravenous",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1714052357580,
-      "tag": "0002_solid_randall_flagg",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1714061975538,
-      "tag": "0003_dashing_phalanx",
+      "when": 1714141642501,
+      "tag": "0000_tearful_old_lace",
       "breakpoints": true
     }
   ]

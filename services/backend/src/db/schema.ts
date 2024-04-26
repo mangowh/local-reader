@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   bigint,
   mysqlTable,
@@ -5,7 +6,7 @@ import {
   serial,
   text,
   timestamp,
-  varchar
+  varchar,
 } from "drizzle-orm/mysql-core";
 import { sql } from "drizzle-orm/sql";
 
@@ -16,6 +17,10 @@ export const users = mysqlTable("users", {
   lastName: text("last_name"),
   email: varchar("email", { length: 255 }),
 });
+
+export const usersRelations = relations(users, ({ many }) => ({
+  usersToBooks: many(usersToBooks),
+}));
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -43,8 +48,8 @@ export const readings = mysqlTable(
   }
 );
 
-export const libraries = mysqlTable(
-  "libraries",
+export const usersToBooks = mysqlTable(
+  "usersToBooks",
   {
     userId: bigint("user_id", { mode: "number", unsigned: true }).references(
       () => users.id
@@ -64,6 +69,21 @@ export const libraries = mysqlTable(
   }
 );
 
+export const usersToBooksRelations = relations(usersToBooks, ({ one }) => ({
+  book: one(books, {
+    fields: [usersToBooks.bookId],
+    references: [books.id],
+  }),
+  user: one(users, {
+    fields: [usersToBooks.userId],
+    references: [users.id],
+  }),
+}));
+
+
+export type UsersToBooks = typeof usersToBooks.$inferSelect;
+export type NewUsersToBooks = typeof usersToBooks.$inferInsert;
+
 export const books = mysqlTable("books", {
   id: serial("id").primaryKey(),
 
@@ -78,6 +98,10 @@ export const books = mysqlTable("books", {
     .default(sql`CURRENT_TIMESTAMP`),
   deletionDate: timestamp("deletion_date"),
 });
+
+export const booksRelations = relations(books, ({ many }) => ({
+  usersToBooks: many(usersToBooks),
+}));
 
 export type Book = typeof books.$inferSelect;
 export type NewBook = typeof books.$inferInsert;
