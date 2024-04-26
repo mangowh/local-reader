@@ -16,9 +16,9 @@ const app = express();
 app.use(express.json());
 
 const main = async () => {
-  const connection = await mysql.createConnection(dbConfig);
+  const connectionPooler = await mysql.createPool(dbConfig);
 
-  const db = drizzle(connection, {
+  const db = drizzle(connectionPooler, {
     schema: dbSchema,
     mode: "default",
     logger: isDev,
