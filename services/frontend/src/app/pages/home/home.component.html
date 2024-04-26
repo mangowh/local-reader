@@ -1,9 +1,9 @@
-<div class="w-full flex justify-around gap-2 px-[15%]">
+<div class="w-full flex justify-around gap-2 px-[15%] mt-16">
   <div
     *ngFor="let user of users$ | async"
     class="flex flex-col justify-center items-center cursor-pointer hover:underline"
   >
-    <app-avatar [routerLink]="['library', user.id]">
+    <app-avatar [routerLink]="['library', user.id]" class="pb-2">
       {{ initialsOfUser(user) }}
     </app-avatar>
     <span> {{ user.firstName }} {{ user.lastName }} </span>
