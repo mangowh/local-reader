@@ -13,7 +13,7 @@ services:
       - DB_HOST=database
       - NODE_ENV=development # DISABILITARE IN PRODUZIONE
     ports:
-      - 3000:3000  # DISABILITARE IN PRODUZIONE
+      - 3000:3000  # TODO DISABILITARE IN PRODUZIONE
     restart: always
 
   database:
@@ -22,7 +22,7 @@ services:
       - MYSQL_DATABASE=hastega
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3306:3306 # DISABILITARE IN PRODUZIONE
+      - 3306:3306 # TODO DISABILITARE IN PRODUZIONE
     volumes:
       - ./data/database:/var/lib/mysql
       - ./services/database/init.sql:/docker-entrypoint-initdb.d/init.sql

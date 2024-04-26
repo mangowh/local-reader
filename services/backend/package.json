@@ -2,7 +2,7 @@
   "name": "backend",
   "scripts": {
     "check": "tsc --noEmit",
-    "start": "npm run migration:apply && ts-node --transpileOnly src/index.ts",
+    "start": "npm run migration:apply && npm run db:seed && ts-node --transpileOnly src/index.ts",
     "dev": "cross-env NODE_ENV=development ts-node ./src/index.ts",
     "migration:generate": "drizzle-kit generate:mysql",
     "migration:apply": "ts-node ./scripts/migrate.ts",
