@@ -28,8 +28,8 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type BooksAuthorFilters = {
-  OR?: InputMaybe<Array<BooksAuthorfiltersOr>>;
+export type BookAuthorFilters = {
+  OR?: InputMaybe<Array<BookAuthorfiltersOr>>;
   eq?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
@@ -48,7 +48,7 @@ export type BooksAuthorFilters = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type BooksAuthorfiltersOr = {
+export type BookAuthorfiltersOr = {
   eq?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
@@ -67,8 +67,8 @@ export type BooksAuthorfiltersOr = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type BooksCreationDateFilters = {
-  OR?: InputMaybe<Array<BooksCreationDatefiltersOr>>;
+export type BookCreationDateFilters = {
+  OR?: InputMaybe<Array<BookCreationDatefiltersOr>>;
   /** Date */
   eq?: InputMaybe<Scalars['String']['input']>;
   /** Date */
@@ -93,7 +93,7 @@ export type BooksCreationDateFilters = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type BooksCreationDatefiltersOr = {
+export type BookCreationDatefiltersOr = {
   /** Date */
   eq?: InputMaybe<Scalars['String']['input']>;
   /** Date */
@@ -118,8 +118,8 @@ export type BooksCreationDatefiltersOr = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type BooksDeletionDateFilters = {
-  OR?: InputMaybe<Array<BooksDeletionDatefiltersOr>>;
+export type BookDeletionDateFilters = {
+  OR?: InputMaybe<Array<BookDeletionDatefiltersOr>>;
   /** Date */
   eq?: InputMaybe<Scalars['String']['input']>;
   /** Date */
@@ -144,7 +144,7 @@ export type BooksDeletionDateFilters = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type BooksDeletionDatefiltersOr = {
+export type BookDeletionDatefiltersOr = {
   /** Date */
   eq?: InputMaybe<Scalars['String']['input']>;
   /** Date */
@@ -165,68 +165,185 @@ export type BooksDeletionDatefiltersOr = {
   ne?: InputMaybe<Scalars['String']['input']>;
   notIlike?: InputMaybe<Scalars['String']['input']>;
   /** Array<Date> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookIdFilters = {
+  OR?: InputMaybe<Array<BookIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  ne?: InputMaybe<Scalars['Int']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookIdfiltersOr = {
+  eq?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  ne?: InputMaybe<Scalars['Int']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookIsbnFilters = {
+  OR?: InputMaybe<Array<BookIsbnfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookIsbnfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookPlotFilters = {
+  OR?: InputMaybe<Array<BookPlotfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookPlotfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookTitleFilters = {
+  OR?: InputMaybe<Array<BookTitlefiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BookTitlefiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
   notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type BooksFilters = {
   OR?: InputMaybe<Array<BooksFiltersOr>>;
-  author?: InputMaybe<BooksAuthorFilters>;
-  creationDate?: InputMaybe<BooksCreationDateFilters>;
-  deletionDate?: InputMaybe<BooksDeletionDateFilters>;
-  id?: InputMaybe<BooksIdFilters>;
-  isbn?: InputMaybe<BooksIsbnFilters>;
-  plot?: InputMaybe<BooksPlotFilters>;
-  title?: InputMaybe<BooksTitleFilters>;
+  author?: InputMaybe<BookAuthorFilters>;
+  creationDate?: InputMaybe<BookCreationDateFilters>;
+  deletionDate?: InputMaybe<BookDeletionDateFilters>;
+  id?: InputMaybe<BookIdFilters>;
+  isbn?: InputMaybe<BookIsbnFilters>;
+  plot?: InputMaybe<BookPlotFilters>;
+  title?: InputMaybe<BookTitleFilters>;
 };
 
 export type BooksFiltersOr = {
-  author?: InputMaybe<BooksAuthorFilters>;
-  creationDate?: InputMaybe<BooksCreationDateFilters>;
-  deletionDate?: InputMaybe<BooksDeletionDateFilters>;
-  id?: InputMaybe<BooksIdFilters>;
-  isbn?: InputMaybe<BooksIsbnFilters>;
-  plot?: InputMaybe<BooksPlotFilters>;
-  title?: InputMaybe<BooksTitleFilters>;
-};
-
-export type BooksIdFilters = {
-  OR?: InputMaybe<Array<BooksIdfiltersOr>>;
-  eq?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
-  ne?: InputMaybe<Scalars['Int']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type BooksIdfiltersOr = {
-  eq?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
-  ne?: InputMaybe<Scalars['Int']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
+  author?: InputMaybe<BookAuthorFilters>;
+  creationDate?: InputMaybe<BookCreationDateFilters>;
+  deletionDate?: InputMaybe<BookDeletionDateFilters>;
+  id?: InputMaybe<BookIdFilters>;
+  isbn?: InputMaybe<BookIsbnFilters>;
+  plot?: InputMaybe<BookPlotFilters>;
+  title?: InputMaybe<BookTitleFilters>;
 };
 
 export type BooksInsertInput = {
@@ -241,45 +358,6 @@ export type BooksInsertInput = {
   title: Scalars['String']['input'];
 };
 
-export type BooksIsbnFilters = {
-  OR?: InputMaybe<Array<BooksIsbnfiltersOr>>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type BooksIsbnfiltersOr = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type BooksOrderBy = {
   author?: InputMaybe<InnerOrder>;
   creationDate?: InputMaybe<InnerOrder>;
@@ -288,45 +366,6 @@ export type BooksOrderBy = {
   isbn?: InputMaybe<InnerOrder>;
   plot?: InputMaybe<InnerOrder>;
   title?: InputMaybe<InnerOrder>;
-};
-
-export type BooksPlotFilters = {
-  OR?: InputMaybe<Array<BooksPlotfiltersOr>>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type BooksPlotfiltersOr = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type BooksSelectItem = {
@@ -340,45 +379,15 @@ export type BooksSelectItem = {
   isbn: Scalars['String']['output'];
   plot?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
+  usersToBooks: Array<BooksUsersToBooksRelation>;
 };
 
-export type BooksTitleFilters = {
-  OR?: InputMaybe<Array<BooksTitlefiltersOr>>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
 
-export type BooksTitlefiltersOr = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  gt?: InputMaybe<Scalars['String']['input']>;
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['String']['input']>;
-  lte?: InputMaybe<Scalars['String']['input']>;
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
+export type BooksSelectItemUsersToBooksArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<BooksUsersToBooksRelationOrder>;
+  where?: InputMaybe<BooksUsersToBooksRelationFilters>;
 };
 
 export type BooksUpdateInput = {
@@ -393,210 +402,62 @@ export type BooksUpdateInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type InnerOrder = {
-  direction: OrderDirection;
-  /** Priority of current field */
-  priority: Scalars['Int']['input'];
-};
-
-export type LibrariesBookIdFilters = {
-  OR?: InputMaybe<Array<LibrariesBookIdfiltersOr>>;
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  ne?: InputMaybe<Scalars['Float']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type LibrariesBookIdfiltersOr = {
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  ne?: InputMaybe<Scalars['Float']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type LibrariesCreationDateFilters = {
-  OR?: InputMaybe<Array<LibrariesCreationDatefiltersOr>>;
-  /** Date */
-  eq?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  gt?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<Date> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  lt?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  lte?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<Date> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type LibrariesCreationDatefiltersOr = {
-  /** Date */
-  eq?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  gt?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  gte?: InputMaybe<Scalars['String']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<Date> */
-  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  lt?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  lte?: InputMaybe<Scalars['String']['input']>;
-  /** Date */
-  ne?: InputMaybe<Scalars['String']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<Date> */
-  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type LibrariesFilters = {
-  OR?: InputMaybe<Array<LibrariesFiltersOr>>;
-  bookId?: InputMaybe<LibrariesBookIdFilters>;
-  creationDate?: InputMaybe<LibrariesCreationDateFilters>;
-  userId?: InputMaybe<LibrariesUserIdFilters>;
-};
-
-export type LibrariesFiltersOr = {
-  bookId?: InputMaybe<LibrariesBookIdFilters>;
-  creationDate?: InputMaybe<LibrariesCreationDateFilters>;
-  userId?: InputMaybe<LibrariesUserIdFilters>;
-};
-
-export type LibrariesInsertInput = {
-  bookId?: InputMaybe<Scalars['Float']['input']>;
-  /** Date */
-  creationDate?: InputMaybe<Scalars['String']['input']>;
-  userId?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type LibrariesOrderBy = {
-  bookId?: InputMaybe<InnerOrder>;
-  creationDate?: InputMaybe<InnerOrder>;
-  userId?: InputMaybe<InnerOrder>;
-};
-
-export type LibrariesSelectItem = {
-  __typename?: 'LibrariesSelectItem';
+export type BooksUsersToBooksRelation = {
+  __typename?: 'BooksUsersToBooksRelation';
   bookId?: Maybe<Scalars['Float']['output']>;
   /** Date */
   creationDate: Scalars['String']['output'];
   userId?: Maybe<Scalars['Float']['output']>;
 };
 
-export type LibrariesUpdateInput = {
-  bookId?: InputMaybe<Scalars['Float']['input']>;
-  /** Date */
-  creationDate?: InputMaybe<Scalars['String']['input']>;
-  userId?: InputMaybe<Scalars['Float']['input']>;
+export type BooksUsersToBooksRelationFilters = {
+  OR?: InputMaybe<Array<BooksUsersToBooksRelationFiltersOr>>;
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
 };
 
-export type LibrariesUserIdFilters = {
-  OR?: InputMaybe<Array<LibrariesUserIdfiltersOr>>;
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  ne?: InputMaybe<Scalars['Float']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
+export type BooksUsersToBooksRelationFiltersOr = {
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
 };
 
-export type LibrariesUserIdfiltersOr = {
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  ilike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
-  isNull?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  ne?: InputMaybe<Scalars['Float']['input']>;
-  notIlike?: InputMaybe<Scalars['String']['input']>;
-  /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
-  notLike?: InputMaybe<Scalars['String']['input']>;
+export type BooksUsersToBooksRelationOrder = {
+  bookId?: InputMaybe<InnerOrder>;
+  creationDate?: InputMaybe<InnerOrder>;
+  userId?: InputMaybe<InnerOrder>;
+};
+
+export type InnerOrder = {
+  direction: OrderDirection;
+  /** Priority of current field */
+  priority: Scalars['Int']['input'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   deleteFrombooks?: Maybe<MutationReturn>;
-  deleteFromlibraries?: Maybe<MutationReturn>;
   deleteFromreadings?: Maybe<MutationReturn>;
   deleteFromusers?: Maybe<MutationReturn>;
+  deleteFromusersToBooks?: Maybe<MutationReturn>;
   insertIntoBooks?: Maybe<MutationReturn>;
   insertIntoBooksSingle?: Maybe<MutationReturn>;
-  insertIntoLibraries?: Maybe<MutationReturn>;
-  insertIntoLibrariesSingle?: Maybe<MutationReturn>;
   insertIntoReadings?: Maybe<MutationReturn>;
   insertIntoReadingsSingle?: Maybe<MutationReturn>;
   insertIntoUsers?: Maybe<MutationReturn>;
   insertIntoUsersSingle?: Maybe<MutationReturn>;
+  insertIntoUsersToBooks?: Maybe<MutationReturn>;
+  insertIntoUsersToBooksSingle?: Maybe<MutationReturn>;
   updateBooks?: Maybe<MutationReturn>;
-  updateLibraries?: Maybe<MutationReturn>;
   updateReadings?: Maybe<MutationReturn>;
   updateUsers?: Maybe<MutationReturn>;
+  updateUsersToBooks?: Maybe<MutationReturn>;
 };
 
 
 export type MutationDeleteFrombooksArgs = {
   where?: InputMaybe<BooksFilters>;
-};
-
-
-export type MutationDeleteFromlibrariesArgs = {
-  where?: InputMaybe<LibrariesFilters>;
 };
 
 
@@ -610,6 +471,11 @@ export type MutationDeleteFromusersArgs = {
 };
 
 
+export type MutationDeleteFromusersToBooksArgs = {
+  where?: InputMaybe<UsersToBooksFilters>;
+};
+
+
 export type MutationInsertIntoBooksArgs = {
   values: Array<BooksInsertInput>;
 };
@@ -617,16 +483,6 @@ export type MutationInsertIntoBooksArgs = {
 
 export type MutationInsertIntoBooksSingleArgs = {
   values: BooksInsertInput;
-};
-
-
-export type MutationInsertIntoLibrariesArgs = {
-  values: Array<LibrariesInsertInput>;
-};
-
-
-export type MutationInsertIntoLibrariesSingleArgs = {
-  values: LibrariesInsertInput;
 };
 
 
@@ -650,15 +506,19 @@ export type MutationInsertIntoUsersSingleArgs = {
 };
 
 
-export type MutationUpdateBooksArgs = {
-  set: BooksUpdateInput;
-  where?: InputMaybe<BooksFilters>;
+export type MutationInsertIntoUsersToBooksArgs = {
+  values: Array<UsersToBooksInsertInput>;
 };
 
 
-export type MutationUpdateLibrariesArgs = {
-  set: LibrariesUpdateInput;
-  where?: InputMaybe<LibrariesFilters>;
+export type MutationInsertIntoUsersToBooksSingleArgs = {
+  values: UsersToBooksInsertInput;
+};
+
+
+export type MutationUpdateBooksArgs = {
+  set: BooksUpdateInput;
+  where?: InputMaybe<BooksFilters>;
 };
 
 
@@ -671,6 +531,12 @@ export type MutationUpdateReadingsArgs = {
 export type MutationUpdateUsersArgs = {
   set: UsersUpdateInput;
   where?: InputMaybe<UsersFilters>;
+};
+
+
+export type MutationUpdateUsersToBooksArgs = {
+  set: UsersToBooksUpdateInput;
+  where?: InputMaybe<UsersToBooksFilters>;
 };
 
 export type MutationReturn = {
@@ -690,12 +556,12 @@ export type Query = {
   __typename?: 'Query';
   books: Array<BooksSelectItem>;
   booksSingle?: Maybe<BooksSelectItem>;
-  libraries: Array<LibrariesSelectItem>;
-  librariesSingle?: Maybe<LibrariesSelectItem>;
   readings: Array<ReadingsSelectItem>;
   readingsSingle?: Maybe<ReadingsSelectItem>;
   users: Array<UsersSelectItem>;
   usersSingle?: Maybe<UsersSelectItem>;
+  userstobooks: Array<UsersToBooksSelectItem>;
+  userstobooksSingle?: Maybe<UsersToBooksSelectItem>;
 };
 
 
@@ -711,21 +577,6 @@ export type QueryBooksSingleArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<BooksOrderBy>;
   where?: InputMaybe<BooksFilters>;
-};
-
-
-export type QueryLibrariesArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<LibrariesOrderBy>;
-  where?: InputMaybe<LibrariesFilters>;
-};
-
-
-export type QueryLibrariesSingleArgs = {
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<LibrariesOrderBy>;
-  where?: InputMaybe<LibrariesFilters>;
 };
 
 
@@ -756,6 +607,21 @@ export type QueryUsersSingleArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<UsersOrderBy>;
   where?: InputMaybe<UsersFilters>;
+};
+
+
+export type QueryUserstobooksArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UsersToBooksOrderBy>;
+  where?: InputMaybe<UsersToBooksFilters>;
+};
+
+
+export type QueryUserstobooksSingleArgs = {
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UsersToBooksOrderBy>;
+  where?: InputMaybe<UsersToBooksFilters>;
 };
 
 export type ReadingsBookIdFilters = {
@@ -1164,6 +1030,254 @@ export type UsersSelectItem = {
   firstName?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
+  usersToBooks: Array<UsersUsersToBooksRelation>;
+};
+
+
+export type UsersSelectItemUsersToBooksArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UsersUsersToBooksRelationOrder>;
+  where?: InputMaybe<UsersUsersToBooksRelationFilters>;
+};
+
+export type UsersToBooksBookIdFilters = {
+  OR?: InputMaybe<Array<UsersToBooksBookIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksBookIdfiltersOr = {
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksBookRelation = {
+  __typename?: 'UsersToBooksBookRelation';
+  author: Scalars['String']['output'];
+  /** Date */
+  creationDate: Scalars['String']['output'];
+  /** Date */
+  deletionDate?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  isbn: Scalars['String']['output'];
+  plot?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+export type UsersToBooksBookRelationFilters = {
+  OR?: InputMaybe<Array<UsersToBooksBookRelationFiltersOr>>;
+  author?: InputMaybe<BookAuthorFilters>;
+  creationDate?: InputMaybe<BookCreationDateFilters>;
+  deletionDate?: InputMaybe<BookDeletionDateFilters>;
+  id?: InputMaybe<BookIdFilters>;
+  isbn?: InputMaybe<BookIsbnFilters>;
+  plot?: InputMaybe<BookPlotFilters>;
+  title?: InputMaybe<BookTitleFilters>;
+};
+
+export type UsersToBooksBookRelationFiltersOr = {
+  author?: InputMaybe<BookAuthorFilters>;
+  creationDate?: InputMaybe<BookCreationDateFilters>;
+  deletionDate?: InputMaybe<BookDeletionDateFilters>;
+  id?: InputMaybe<BookIdFilters>;
+  isbn?: InputMaybe<BookIsbnFilters>;
+  plot?: InputMaybe<BookPlotFilters>;
+  title?: InputMaybe<BookTitleFilters>;
+};
+
+export type UsersToBooksCreationDateFilters = {
+  OR?: InputMaybe<Array<UsersToBooksCreationDatefiltersOr>>;
+  /** Date */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  gt?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<Date> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  lt?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  lte?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<Date> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksCreationDatefiltersOr = {
+  /** Date */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  gt?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<Date> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  lt?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  lte?: InputMaybe<Scalars['String']['input']>;
+  /** Date */
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<Date> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksFilters = {
+  OR?: InputMaybe<Array<UsersToBooksFiltersOr>>;
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
+};
+
+export type UsersToBooksFiltersOr = {
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
+};
+
+export type UsersToBooksInsertInput = {
+  bookId?: InputMaybe<Scalars['Float']['input']>;
+  /** Date */
+  creationDate?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type UsersToBooksOrderBy = {
+  bookId?: InputMaybe<InnerOrder>;
+  creationDate?: InputMaybe<InnerOrder>;
+  userId?: InputMaybe<InnerOrder>;
+};
+
+export type UsersToBooksSelectItem = {
+  __typename?: 'UsersToBooksSelectItem';
+  book?: Maybe<UsersToBooksBookRelation>;
+  bookId?: Maybe<Scalars['Float']['output']>;
+  /** Date */
+  creationDate: Scalars['String']['output'];
+  user?: Maybe<UsersToBooksUserRelation>;
+  userId?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type UsersToBooksSelectItemBookArgs = {
+  where?: InputMaybe<UsersToBooksBookRelationFilters>;
+};
+
+
+export type UsersToBooksSelectItemUserArgs = {
+  where?: InputMaybe<UsersToBooksUserRelationFilters>;
+};
+
+export type UsersToBooksUpdateInput = {
+  bookId?: InputMaybe<Scalars['Float']['input']>;
+  /** Date */
+  creationDate?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type UsersToBooksUserIdFilters = {
+  OR?: InputMaybe<Array<UsersToBooksUserIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksUserIdfiltersOr = {
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersToBooksUserRelation = {
+  __typename?: 'UsersToBooksUserRelation';
+  email?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  lastName?: Maybe<Scalars['String']['output']>;
+};
+
+export type UsersToBooksUserRelationFilters = {
+  OR?: InputMaybe<Array<UsersToBooksUserRelationFiltersOr>>;
+  email?: InputMaybe<UsersEmailFilters>;
+  firstName?: InputMaybe<UsersFirstNameFilters>;
+  id?: InputMaybe<UsersIdFilters>;
+  lastName?: InputMaybe<UsersLastNameFilters>;
+};
+
+export type UsersToBooksUserRelationFiltersOr = {
+  email?: InputMaybe<UsersEmailFilters>;
+  firstName?: InputMaybe<UsersFirstNameFilters>;
+  id?: InputMaybe<UsersIdFilters>;
+  lastName?: InputMaybe<UsersLastNameFilters>;
 };
 
 export type UsersUpdateInput = {
@@ -1173,11 +1287,69 @@ export type UsersUpdateInput = {
   lastName?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UsersUsersToBooksRelation = {
+  __typename?: 'UsersUsersToBooksRelation';
+  bookId?: Maybe<Scalars['Float']['output']>;
+  /** Date */
+  creationDate: Scalars['String']['output'];
+  userId?: Maybe<Scalars['Float']['output']>;
+};
+
+export type UsersUsersToBooksRelationFilters = {
+  OR?: InputMaybe<Array<UsersUsersToBooksRelationFiltersOr>>;
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
+};
+
+export type UsersUsersToBooksRelationFiltersOr = {
+  bookId?: InputMaybe<UsersToBooksBookIdFilters>;
+  creationDate?: InputMaybe<UsersToBooksCreationDateFilters>;
+  userId?: InputMaybe<UsersToBooksUserIdFilters>;
+};
+
+export type UsersUsersToBooksRelationOrder = {
+  bookId?: InputMaybe<InnerOrder>;
+  creationDate?: InputMaybe<InnerOrder>;
+  userId?: InputMaybe<InnerOrder>;
+};
+
+export type LibraryQueryVariables = Exact<{
+  where?: InputMaybe<UsersToBooksFilters>;
+}>;
+
+
+export type LibraryQuery = { __typename?: 'Query', userstobooks: Array<{ __typename?: 'UsersToBooksSelectItem', book?: { __typename?: 'UsersToBooksBookRelation', author: string, id: number, isbn: string, plot?: string | null, title: string } | null }> };
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'UsersSelectItem', id: number, firstName?: string | null, lastName?: string | null }> };
 
+export const LibraryDocument = gql`
+    query Library($where: UsersToBooksFilters) {
+  userstobooks(where: $where) {
+    book {
+      author
+      id
+      isbn
+      plot
+      title
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LibraryGQL extends Apollo.Query<LibraryQuery, LibraryQueryVariables> {
+    document = LibraryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UsersDocument = gql`
     query Users {
   users {

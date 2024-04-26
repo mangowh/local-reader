@@ -1,0 +1,11 @@
+query Library($where: UsersToBooksFilters) {
+  userstobooks(where: $where) {
+    book {
+      author
+      id
+      isbn
+      plot
+      title
+    }
+  }
+}
