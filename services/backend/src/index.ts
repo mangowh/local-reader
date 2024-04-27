@@ -45,7 +45,7 @@ const main = async () => {
     expressMiddleware(server)
   );
 
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
     console.log("Applicazione avviata sulla porta ", port);
   });
 };

@@ -2,7 +2,7 @@ services:
   frontend:
     build: ./services/frontend
     ports:
-      - 8080:80
+      - 0.0.0.0:8080:80
     volumes:
       - frontend_nginx-cache:/var/cache/nginx
     restart: always
