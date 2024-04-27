@@ -23,6 +23,8 @@ const main = async () => {
 
   const [usersCount] = await db.select({ count: count() }).from(users);
 
+  let resultingUsers = [];
+
   if (usersCount.count === 0) {
     const usersData: (typeof users.$inferInsert)[] = [
       {
@@ -42,7 +44,7 @@ const main = async () => {
       },
     ];
 
-    await db.insert(users).values(usersData);
+    resultingUsers = await db.insert(users).values(usersData).returning();
   }
 
   // LIBRI
@@ -61,29 +63,25 @@ const main = async () => {
       });
     }
 
-    await db.insert(books).values(booksData);
-  }
-/* 
-  // LIBRI <-> UTENTI
+    const resultedBooks = await db.insert(books).values(booksData).returning();
 
-  const [usersToBooksCount] = await db
-    .select({ count: count() })
-    .from(usersToBooks);
+    // LIBRI <-> UTENTI
 
-  if (usersToBooksCount.count === 0) {
     const usersToBooksData: (typeof usersToBooks.$inferInsert)[] = [];
 
-    for (const book of booksData) {
-      if (book.id) {
+    for (const book of resultedBooks) {
+      const randomUserId = getRandomInt(1, resultingUsers.length * 2);
+
+      if (randomUserId <= resultingUsers.length) {
         usersToBooksData.push({
           bookId: book.id,
-          userId: getRandomInt(1, 3),
+          userId: randomUserId,
         });
       }
     }
 
     await db.insert(usersToBooks).values(usersToBooksData);
-  } */
+  }
 
   console.log("\nSeeding completato!\n");
 

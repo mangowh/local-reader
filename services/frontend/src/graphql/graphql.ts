@@ -1342,15 +1342,30 @@ export type BookInsertMutation = { insertIntoBooksSingle?: { id: number, title: 
 
 export type LibraryQueryVariables = Exact<{
   where?: InputMaybe<UsersToBooksFilters>;
+  orderBy?: InputMaybe<UsersToBooksOrderBy>;
 }>;
 
 
-export type LibraryQuery = { userstobooks: Array<{ book?: { author: string, id: number, isbn: string, plot?: string | null, title: string } | null, user?: { firstName?: string | null, lastName?: string | null } | null }> };
+export type LibraryQuery = { userstobooks: Array<{ book?: { author: string, id: number, isbn: string, plot?: string | null, title: string, creationDate?: string | null } | null, user?: { firstName?: string | null, lastName?: string | null } | null }> };
+
+export type SaveBookIntoUserLibraryMutationVariables = Exact<{
+  values: UsersToBooksInsertInput;
+}>;
+
+
+export type SaveBookIntoUserLibraryMutation = { insertIntoUsersToBooksSingle?: { bookId?: number | null, creationDate?: string | null, userId?: number | null } | null };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsersQuery = { users: Array<{ id: number, firstName?: string | null, lastName?: string | null }> };
+
+export type UserQueryVariables = Exact<{
+  where?: InputMaybe<UsersFilters>;
+}>;
+
+
+export type UserQuery = { usersSingle?: { firstName?: string | null, lastName?: string | null, email?: string | null } | null };
 
 export const BookInsertDocument = gql`
     mutation BookInsert($values: BooksInsertInput!) {
@@ -1377,14 +1392,15 @@ export const BookInsertDocument = gql`
     }
   }
 export const LibraryDocument = gql`
-    query Library($where: UsersToBooksFilters) {
-  userstobooks(where: $where) {
+    query Library($where: UsersToBooksFilters, $orderBy: UsersToBooksOrderBy) {
+  userstobooks(where: $where, orderBy: $orderBy) {
     book {
       author
       id
       isbn
       plot
       title
+      creationDate
     }
     user {
       firstName
@@ -1399,6 +1415,26 @@ export const LibraryDocument = gql`
   })
   export class LibraryGQL extends Apollo.Query<LibraryQuery, LibraryQueryVariables> {
     document = LibraryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SaveBookIntoUserLibraryDocument = gql`
+    mutation SaveBookIntoUserLibrary($values: UsersToBooksInsertInput!) {
+  insertIntoUsersToBooksSingle(values: $values) {
+    bookId
+    creationDate
+    userId
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SaveBookIntoUserLibraryGQL extends Apollo.Mutation<SaveBookIntoUserLibraryMutation, SaveBookIntoUserLibraryMutationVariables> {
+    document = SaveBookIntoUserLibraryDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -1419,6 +1455,26 @@ export const UsersDocument = gql`
   })
   export class UsersGQL extends Apollo.Query<UsersQuery, UsersQueryVariables> {
     document = UsersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UserDocument = gql`
+    query User($where: UsersFilters) {
+  usersSingle(where: $where) {
+    firstName
+    lastName
+    email
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserGQL extends Apollo.Query<UserQuery, UserQueryVariables> {
+    document = UserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

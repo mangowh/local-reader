@@ -1,15 +1,14 @@
 import "dotenv/config";
 
 import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
+import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { buildSchema } from "drizzle-graphql";
+import { drizzle } from "drizzle-orm/node-postgres";
 import express from "express";
+import { Pool } from "pg";
 import { dbConfig, isDev } from "./config";
 import * as dbSchema from "./db/schema";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
-import { expressMiddleware } from "@apollo/server/express4";
 
 const port = 3000;
 

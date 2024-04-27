@@ -5,6 +5,7 @@ import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { heroPlusCircle } from "@ng-icons/heroicons/outline";
 import { UsersToBooksSelectItem } from "../../../graphql/graphql";
 import { LibraryService } from "../../services/library.service";
+import { UsersService } from "../../services/users.service";
 
 @Component({
   selector: "app-user-library",
@@ -18,10 +19,12 @@ export class UserLibraryComponent implements OnInit {
   books: UsersToBooksSelectItem[] = [];
 
   userId?: number;
+  currentUser: any;
 
   constructor(
     private route: ActivatedRoute,
-    private libraryService: LibraryService
+    private libraryService: LibraryService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,10 @@ export class UserLibraryComponent implements OnInit {
 
     if (userIdParam) {
       this.userId = parseInt(userIdParam);
+
+      this.usersService.getUserById(this.userId).subscribe((res) => {
+        this.currentUser = res;
+      });
 
       this.libraryService.getBooksOfUser(this.userId).subscribe((books) => {
         this.books = books;

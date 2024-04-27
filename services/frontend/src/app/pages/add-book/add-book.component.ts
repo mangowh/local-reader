@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { heroCheckCircle } from "@ng-icons/heroicons/outline";
 import { ButtonComponent } from "../../components/button/button.component";
 import { LibraryService } from "../../services/library.service";
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-add-book",
@@ -27,9 +27,26 @@ export class AddBookComponent {
     plot: new FormControl(""),
   });
 
-  constructor(private libraryService: LibraryService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private libraryService: LibraryService
+  ) {}
 
   addBookToUserLibrary($event: MouseEvent) {
-    this.libraryService.addBookToUserLibrary(this.form.getRawValue() as any, 1);
+    const userIdParam = this.route.snapshot.paramMap.get("id");
+
+    if (userIdParam) {
+      this.libraryService
+        .addBookToUserLibrary(
+          this.form.getRawValue() as any,
+          parseInt(userIdParam)
+        )
+        .subscribe(() =>
+          this.router.navigate([".."], {
+            relativeTo: this.route,
+          })
+        );
+    }
   }
 }
