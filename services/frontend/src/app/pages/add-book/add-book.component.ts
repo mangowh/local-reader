@@ -1,15 +1,19 @@
-import { Component } from "@angular/core";
+import { Component, DestroyRef, inject } from "@angular/core";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { heroCheckCircle } from "@ng-icons/heroicons/outline";
+import { take } from "rxjs";
+import { BooksInsertInput } from "../../../graphql/graphql";
 import { ButtonComponent } from "../../components/button/button.component";
+import { AuthService } from "../../services/auth.service";
 import { LibraryService } from "../../services/library.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-add-book",
@@ -17,7 +21,12 @@ import { ActivatedRoute, Router } from "@angular/router";
   providers: [provideIcons({ heroCheckCircle })],
   templateUrl: "./add-book.component.html",
   styleUrl: "./add-book.component.scss",
-  imports: [NgIconComponent, ButtonComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgIconComponent,
+    ButtonComponent,
+    ReactiveFormsModule,
+  ],
 })
 export class AddBookComponent {
   form = new FormGroup({
@@ -27,26 +36,38 @@ export class AddBookComponent {
     plot: new FormControl(""),
   });
 
+  currentUser$ = this.authService.currentUser$;
+
+  destroyRef = inject(DestroyRef);
+
   constructor(
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private libraryService: LibraryService
   ) {}
 
   addBookToUserLibrary($event: MouseEvent) {
-    const userIdParam = this.route.snapshot.paramMap.get("id");
-
-    if (userIdParam) {
-      this.libraryService
-        .addBookToUserLibrary(
-          this.form.getRawValue() as any,
-          parseInt(userIdParam)
-        )
-        .subscribe(() =>
-          this.router.navigate([".."], {
-            relativeTo: this.route,
-          })
-        );
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      this.form.updateValueAndValidity();
+      return;
     }
+
+    this.currentUser$.pipe(take(1)).subscribe((currentUser) => {
+      if (currentUser) {
+        this.libraryService
+          .addBookToUserLibrary(
+            this.form.getRawValue() as BooksInsertInput,
+            currentUser?.id
+          )
+          .pipe(take(1))
+          .subscribe(() =>
+            this.router.navigate([".."], {
+              relativeTo: this.route,
+            })
+          );
+      }
+    });
   }
 }

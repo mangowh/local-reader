@@ -1,20 +1,24 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { UsersService } from "../../services/users.service";
-import { AvatarComponent } from "../../components/avatar/avatar.component";
 import { RouterModule } from "@angular/router";
+import { AvatarComponent } from "../../components/avatar/avatar.component";
+import { AuthService } from "../../services/auth.service";
+import { UsersService } from "../../services/users.service";
 
 @Component({
-  selector: "app-home",
+  selector: "app-login",
   standalone: true,
-  templateUrl: "./home.component.html",
-  styleUrl: "./home.component.scss",
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.scss",
   imports: [CommonModule, AvatarComponent, RouterModule],
 })
-export class HomeComponent {
+export class LoginComponent {
   users$ = this.usersService.users$;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService
+  ) {}
 
   initialsOfUser({
     firstName,
@@ -27,5 +31,9 @@ export class HomeComponent {
       .split(" ")
       .map((n) => n[0])
       .join("");
+  }
+
+  loginWith(user: any) {
+    this.authService.setCurrentUser(user);
   }
 }
