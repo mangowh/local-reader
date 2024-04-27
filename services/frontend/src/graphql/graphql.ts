@@ -358,6 +358,18 @@ export type BooksInsertInput = {
   title: Scalars['String']['input'];
 };
 
+export type BooksItem = {
+  author: Scalars['String']['output'];
+  /** Date */
+  creationDate?: Maybe<Scalars['String']['output']>;
+  /** Date */
+  deletionDate?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  isbn: Scalars['String']['output'];
+  plot?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
 export type BooksOrderBy = {
   author?: InputMaybe<InnerOrder>;
   creationDate?: InputMaybe<InnerOrder>;
@@ -369,10 +381,9 @@ export type BooksOrderBy = {
 };
 
 export type BooksSelectItem = {
-  __typename?: 'BooksSelectItem';
   author: Scalars['String']['output'];
   /** Date */
-  creationDate: Scalars['String']['output'];
+  creationDate?: Maybe<Scalars['String']['output']>;
   /** Date */
   deletionDate?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
@@ -403,10 +414,9 @@ export type BooksUpdateInput = {
 };
 
 export type BooksUsersToBooksRelation = {
-  __typename?: 'BooksUsersToBooksRelation';
   bookId?: Maybe<Scalars['Float']['output']>;
   /** Date */
-  creationDate: Scalars['String']['output'];
+  creationDate?: Maybe<Scalars['String']['output']>;
   userId?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -436,42 +446,41 @@ export type InnerOrder = {
 };
 
 export type Mutation = {
-  __typename?: 'Mutation';
-  deleteFrombooks?: Maybe<MutationReturn>;
-  deleteFromreadings?: Maybe<MutationReturn>;
-  deleteFromusers?: Maybe<MutationReturn>;
-  deleteFromusersToBooks?: Maybe<MutationReturn>;
-  insertIntoBooks?: Maybe<MutationReturn>;
-  insertIntoBooksSingle?: Maybe<MutationReturn>;
-  insertIntoReadings?: Maybe<MutationReturn>;
-  insertIntoReadingsSingle?: Maybe<MutationReturn>;
-  insertIntoUsers?: Maybe<MutationReturn>;
-  insertIntoUsersSingle?: Maybe<MutationReturn>;
-  insertIntoUsersToBooks?: Maybe<MutationReturn>;
-  insertIntoUsersToBooksSingle?: Maybe<MutationReturn>;
-  updateBooks?: Maybe<MutationReturn>;
-  updateReadings?: Maybe<MutationReturn>;
-  updateUsers?: Maybe<MutationReturn>;
-  updateUsersToBooks?: Maybe<MutationReturn>;
+  deleteFromBooks: Array<BooksItem>;
+  deleteFromReadings: Array<ReadingsItem>;
+  deleteFromUsers: Array<UsersItem>;
+  deleteFromUsersToBooks: Array<UsersToBooksItem>;
+  insertIntoBooks: Array<BooksItem>;
+  insertIntoBooksSingle?: Maybe<BooksItem>;
+  insertIntoReadings: Array<ReadingsItem>;
+  insertIntoReadingsSingle?: Maybe<ReadingsItem>;
+  insertIntoUsers: Array<UsersItem>;
+  insertIntoUsersSingle?: Maybe<UsersItem>;
+  insertIntoUsersToBooks: Array<UsersToBooksItem>;
+  insertIntoUsersToBooksSingle?: Maybe<UsersToBooksItem>;
+  updateBooks: Array<BooksItem>;
+  updateReadings: Array<ReadingsItem>;
+  updateUsers: Array<UsersItem>;
+  updateUsersToBooks: Array<UsersToBooksItem>;
 };
 
 
-export type MutationDeleteFrombooksArgs = {
+export type MutationDeleteFromBooksArgs = {
   where?: InputMaybe<BooksFilters>;
 };
 
 
-export type MutationDeleteFromreadingsArgs = {
+export type MutationDeleteFromReadingsArgs = {
   where?: InputMaybe<ReadingsFilters>;
 };
 
 
-export type MutationDeleteFromusersArgs = {
+export type MutationDeleteFromUsersArgs = {
   where?: InputMaybe<UsersFilters>;
 };
 
 
-export type MutationDeleteFromusersToBooksArgs = {
+export type MutationDeleteFromUsersToBooksArgs = {
   where?: InputMaybe<UsersToBooksFilters>;
 };
 
@@ -539,11 +548,6 @@ export type MutationUpdateUsersToBooksArgs = {
   where?: InputMaybe<UsersToBooksFilters>;
 };
 
-export type MutationReturn = {
-  __typename?: 'MutationReturn';
-  isSuccess: Scalars['Boolean']['output'];
-};
-
 /** Order by direction */
 export enum OrderDirection {
   /** Ascending order */
@@ -553,7 +557,6 @@ export enum OrderDirection {
 }
 
 export type Query = {
-  __typename?: 'Query';
   books: Array<BooksSelectItem>;
   booksSingle?: Maybe<BooksSelectItem>;
   readings: Array<ReadingsSelectItem>;
@@ -776,6 +779,14 @@ export type ReadingsInsertInput = {
   userId?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type ReadingsItem = {
+  bookId?: Maybe<Scalars['Float']['output']>;
+  /** Date */
+  creationDate?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  userId?: Maybe<Scalars['Float']['output']>;
+};
+
 export type ReadingsOrderBy = {
   bookId?: InputMaybe<InnerOrder>;
   creationDate?: InputMaybe<InnerOrder>;
@@ -784,11 +795,10 @@ export type ReadingsOrderBy = {
 };
 
 export type ReadingsSelectItem = {
-  __typename?: 'ReadingsSelectItem';
   bookId?: Maybe<Scalars['Float']['output']>;
   /** Date */
-  creationDate: Scalars['String']['output'];
-  id?: Maybe<Scalars['Int']['output']>;
+  creationDate?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
   userId?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -978,6 +988,13 @@ export type UsersInsertInput = {
   lastName?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UsersItem = {
+  email?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  lastName?: Maybe<Scalars['String']['output']>;
+};
+
 export type UsersLastNameFilters = {
   OR?: InputMaybe<Array<UsersLastNamefiltersOr>>;
   eq?: InputMaybe<Scalars['String']['input']>;
@@ -1025,7 +1042,6 @@ export type UsersOrderBy = {
 };
 
 export type UsersSelectItem = {
-  __typename?: 'UsersSelectItem';
   email?: Maybe<Scalars['String']['output']>;
   firstName?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
@@ -1081,10 +1097,9 @@ export type UsersToBooksBookIdfiltersOr = {
 };
 
 export type UsersToBooksBookRelation = {
-  __typename?: 'UsersToBooksBookRelation';
   author: Scalars['String']['output'];
   /** Date */
-  creationDate: Scalars['String']['output'];
+  creationDate?: Maybe<Scalars['String']['output']>;
   /** Date */
   deletionDate?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
@@ -1185,6 +1200,13 @@ export type UsersToBooksInsertInput = {
   userId?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type UsersToBooksItem = {
+  bookId?: Maybe<Scalars['Float']['output']>;
+  /** Date */
+  creationDate?: Maybe<Scalars['String']['output']>;
+  userId?: Maybe<Scalars['Float']['output']>;
+};
+
 export type UsersToBooksOrderBy = {
   bookId?: InputMaybe<InnerOrder>;
   creationDate?: InputMaybe<InnerOrder>;
@@ -1192,11 +1214,10 @@ export type UsersToBooksOrderBy = {
 };
 
 export type UsersToBooksSelectItem = {
-  __typename?: 'UsersToBooksSelectItem';
   book?: Maybe<UsersToBooksBookRelation>;
   bookId?: Maybe<Scalars['Float']['output']>;
   /** Date */
-  creationDate: Scalars['String']['output'];
+  creationDate?: Maybe<Scalars['String']['output']>;
   user?: Maybe<UsersToBooksUserRelation>;
   userId?: Maybe<Scalars['Float']['output']>;
 };
@@ -1258,7 +1279,6 @@ export type UsersToBooksUserIdfiltersOr = {
 };
 
 export type UsersToBooksUserRelation = {
-  __typename?: 'UsersToBooksUserRelation';
   email?: Maybe<Scalars['String']['output']>;
   firstName?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
@@ -1288,10 +1308,9 @@ export type UsersUpdateInput = {
 };
 
 export type UsersUsersToBooksRelation = {
-  __typename?: 'UsersUsersToBooksRelation';
   bookId?: Maybe<Scalars['Float']['output']>;
   /** Date */
-  creationDate: Scalars['String']['output'];
+  creationDate?: Maybe<Scalars['String']['output']>;
   userId?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1319,24 +1338,30 @@ export type BookInsertMutationVariables = Exact<{
 }>;
 
 
-export type BookInsertMutation = { __typename?: 'Mutation', insertIntoBooksSingle?: { __typename?: 'MutationReturn', isSuccess: boolean } | null };
+export type BookInsertMutation = { insertIntoBooksSingle?: { id: number, title: string, author: string, isbn: string, plot?: string | null, creationDate?: string | null, deletionDate?: string | null } | null };
 
 export type LibraryQueryVariables = Exact<{
   where?: InputMaybe<UsersToBooksFilters>;
 }>;
 
 
-export type LibraryQuery = { __typename?: 'Query', userstobooks: Array<{ __typename?: 'UsersToBooksSelectItem', book?: { __typename?: 'UsersToBooksBookRelation', author: string, id: number, isbn: string, plot?: string | null, title: string } | null, user?: { __typename?: 'UsersToBooksUserRelation', firstName?: string | null, lastName?: string | null } | null }> };
+export type LibraryQuery = { userstobooks: Array<{ book?: { author: string, id: number, isbn: string, plot?: string | null, title: string } | null, user?: { firstName?: string | null, lastName?: string | null } | null }> };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'UsersSelectItem', id: number, firstName?: string | null, lastName?: string | null }> };
+export type UsersQuery = { users: Array<{ id: number, firstName?: string | null, lastName?: string | null }> };
 
 export const BookInsertDocument = gql`
     mutation BookInsert($values: BooksInsertInput!) {
   insertIntoBooksSingle(values: $values) {
-    isSuccess
+    id
+    title
+    author
+    isbn
+    plot
+    creationDate
+    deletionDate
   }
 }
     `;

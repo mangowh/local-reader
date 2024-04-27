@@ -4,7 +4,7 @@ import {
   BookInsertGQL,
   BooksInsertInput,
   LibraryGQL,
-  UsersToBooksSelectItem
+  UsersToBooksSelectItem,
 } from "../../graphql/graphql";
 
 @Injectable({
@@ -25,6 +25,8 @@ export class LibraryService {
   }
 
   addBookToUserLibrary(book: BooksInsertInput, userId: number) {
-    this.insertBookGQL.mutate({ values: book }).subscribe(console.log)
+    this.insertBookGQL
+      .mutate({ values: { author: "TEST", "isbn": "TEST", "title": "asdfasdfasfasfsad" } })
+      .subscribe(console.log);
   }
 }

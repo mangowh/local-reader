@@ -2,11 +2,10 @@ import "dotenv/config";
 
 import { faker } from "@faker-js/faker";
 import { count } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 import { dbConfig, isDev } from "../src/config";
 import { books, users, usersToBooks } from "../src/db/schema";
-
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -15,7 +14,7 @@ function getRandomInt(min: number, max: number) {
 }
 
 const main = async () => {
-  const client = postgres({ ...dbConfig, max: 1 });
+  const client = new Pool(dbConfig);
   const db = drizzle(client, { logger: isDev });
 
   console.log("\nSeeding del database...\n");
@@ -27,19 +26,16 @@ const main = async () => {
   if (usersCount.count === 0) {
     const usersData: (typeof users.$inferInsert)[] = [
       {
-        id: 1,
         firstName: "Hastega1",
         lastName: "Hastega1",
         email: faker.internet.email(),
       },
       {
-        id: 2,
         firstName: "Hastega2",
         lastName: "Hastega2",
         email: faker.internet.email(),
       },
       {
-        id: 3,
         firstName: "Hastega3",
         lastName: "Hastega3",
         email: faker.internet.email(),
@@ -58,7 +54,6 @@ const main = async () => {
   if (booksCount.count === 0) {
     for (let i = 1; i < 20; i++) {
       booksData.push({
-        id: i,
         title: faker.lorem.sentence({ min: 1, max: 10 }),
         author: faker.person.fullName(),
         isbn: faker.commerce.isbn(),
@@ -68,7 +63,7 @@ const main = async () => {
 
     await db.insert(books).values(booksData);
   }
-
+/* 
   // LIBRI <-> UTENTI
 
   const [usersToBooksCount] = await db
@@ -88,7 +83,7 @@ const main = async () => {
     }
 
     await db.insert(usersToBooks).values(usersToBooksData);
-  }
+  } */
 
   console.log("\nSeeding completato!\n");
 

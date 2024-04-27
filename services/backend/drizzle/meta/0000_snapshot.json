@@ -1,5 +1,5 @@
 {
-  "id": "b2d990fc-99b0-4f25-a5a9-36befc987433",
+  "id": "8789e763-3bf1-4946-9c7e-e972b57d29de",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -42,7 +42,7 @@
           "name": "creation_date",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         },
         "deletion_date": {
@@ -83,7 +83,7 @@
           "name": "creation_date",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
@@ -182,7 +182,7 @@
           "name": "creation_date",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },

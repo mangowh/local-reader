@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "books" (
 	"author" varchar(255) NOT NULL,
 	"isbn" varchar(20) NOT NULL,
 	"plot" text,
-	"creation_date" timestamp DEFAULT now() NOT NULL,
+	"creation_date" timestamp DEFAULT now(),
 	"deletion_date" timestamp
 );
 --> statement-breakpoint
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "readings" (
 	"id" serial NOT NULL,
 	"user_id" bigint,
 	"book_id" bigint,
-	"creation_date" timestamp DEFAULT now() NOT NULL,
+	"creation_date" timestamp DEFAULT now(),
 	CONSTRAINT "readings_id_user_id_book_id_pk" PRIMARY KEY("id","user_id","book_id")
 );
 --> statement-breakpoint
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 CREATE TABLE IF NOT EXISTS "usersToBooks" (
 	"user_id" bigint,
 	"book_id" bigint,
-	"creation_date" timestamp DEFAULT now() NOT NULL,
+	"creation_date" timestamp DEFAULT now(),
 	CONSTRAINT "usersToBooks_user_id_book_id_pk" PRIMARY KEY("user_id","book_id")
 );
 --> statement-breakpoint

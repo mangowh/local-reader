@@ -12,6 +12,9 @@ const config: CodegenConfig = {
         "typescript-operations",
         "typescript-apollo-angular",
       ],
+      config: {
+        skipTypename: true,
+      },
     },
   },
 };

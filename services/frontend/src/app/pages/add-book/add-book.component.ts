@@ -8,6 +8,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from "@angular/forms";
 
 @Component({
@@ -20,9 +21,9 @@ import {
 })
 export class AddBookComponent {
   form = new FormGroup({
-    title: new FormControl(""),
-    author: new FormControl(""),
-    isbn: new FormControl(""),
+    title: new FormControl("", Validators.required),
+    author: new FormControl("", Validators.required),
+    isbn: new FormControl("", Validators.required),
     plot: new FormControl(""),
   });
 

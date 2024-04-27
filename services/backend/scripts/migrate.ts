@@ -1,13 +1,13 @@
 import "dotenv/config";
 
-import { drizzle } from "drizzle-orm/postgres-js";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
 import path from "path";
-import postgres from "postgres";
+import { Pool } from "pg";
 import { dbConfig, isDev } from "../src/config";
 
 (async () => {
-  const client = postgres({ ...dbConfig, max: 1 });
+  const client = new Pool(dbConfig);
   const db = drizzle(client, { logger: isDev });
 
   console.log("\nApplico migrazioni...\n");
