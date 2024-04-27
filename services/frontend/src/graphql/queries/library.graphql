@@ -25,3 +25,11 @@ query Books($orderBy: BooksOrderBy, $where: BooksFilters) {
     plot
   }
 }
+
+query Readings($orderBy: ReadingsOrderBy, $where: ReadingsFilters) {
+  readings(orderBy: $orderBy, where: $where) {
+    bookId
+    userId
+    creationDate
+  }
+}

@@ -7,7 +7,7 @@
     <div>
       <span
         [routerLink]="['./add']"
-        class="hover:underline cursor-pointer flex items-center"
+        class="hover:underline cursor-pointer flex items-center mr-4"
       >
         <ng-icon name="heroPlusCircle"></ng-icon>
         Aggiungi libro
@@ -15,7 +15,10 @@
     </div>
   </div>
 
-  <div class="rounded-xl overflow-auto border shadow-xl">
+  <div
+    class="rounded-xl overflow-auto border shadow-xl"
+    *ngIf="(books$ | async)?.length; else noBooks"
+  >
     <table class="table-fixed w-full text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase bg-slate-50">
         <tr>
@@ -53,3 +56,5 @@
     </table>
   </div>
 </div>
+
+<ng-template #noBooks> Nessun libro aggiunto </ng-template>

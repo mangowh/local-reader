@@ -19,6 +19,7 @@ export const users = pgTable("users", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   usersToBooks: many(usersToBooks),
+  readings: many(readings),
 }));
 
 export type User = typeof users.$inferSelect;
@@ -40,6 +41,20 @@ export const readings = pgTable(
     };
   }
 );
+
+export const readingsRelations = relations(readings, ({ one }) => ({
+  book: one(books, {
+    fields: [readings.bookId],
+    references: [books.id],
+  }),
+  user: one(users, {
+    fields: [readings.userId],
+    references: [users.id],
+  }),
+}));
+
+export type Reading = typeof readings.$inferSelect;
+export type newReading = typeof readings.$inferInsert;
 
 export const usersToBooks = pgTable(
   "usersToBooks",
@@ -85,6 +100,7 @@ export const books = pgTable("books", {
 
 export const booksRelations = relations(books, ({ many }) => ({
   usersToBooks: many(usersToBooks),
+  readings: many(readings),
 }));
 
 export type Book = typeof books.$inferSelect;

@@ -5,7 +5,7 @@ import { count } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { dbConfig, isDev } from "../src/config";
-import { books, users, usersToBooks } from "../src/db/schema";
+import { books, readings, users, usersToBooks } from "../src/db/schema";
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -59,7 +59,7 @@ const main = async () => {
         title: faker.lorem.sentence({ min: 1, max: 10 }),
         author: faker.person.fullName(),
         isbn: faker.commerce.isbn(),
-        plot: faker.lorem.paragraph(),
+        plot: faker.lorem.paragraphs({ min: 1, max: 5 }),
       });
     }
 
@@ -81,6 +81,26 @@ const main = async () => {
     }
 
     await db.insert(usersToBooks).values(usersToBooksData);
+
+    // LETTURE
+
+    const readingsData: (typeof readings.$inferInsert)[] = [];
+
+    for (const book of resultedBooks) {
+      const count = getRandomInt(1, 5);
+
+      for (let i = 0; i < count; i++) {
+        const randomUserId = getRandomInt(1, resultingUsers.length);
+
+        readingsData.push({
+          userId: randomUserId,
+          bookId: book.id,
+          creationDate: faker.date.past({ years: 20 }),
+        });
+      }
+    }
+
+    await db.insert(readings).values(readingsData);
   }
 
   console.log("\nSeeding completato!\n");

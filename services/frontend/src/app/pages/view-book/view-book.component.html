@@ -1,1 +1,61 @@
-{{ bookData$ | async | json }}
+<div *ngIf="bookData$ | async as book; else error" class="flex flex-col">
+  <div class="mb-16">
+    <span
+      [routerLink]="'/library'"
+      class="inline-flex align-middle gap-2 hover:underline cursor-pointer"
+    >
+      <ng-icon name="heroArrowLeft"></ng-icon> Indietro
+    </span>
+  </div>
+
+  <div class="flex-1 mb-8">
+    <h1 class="text-3xl font-extrabold font-serif">
+      {{ book.title }}
+    </h1>
+
+    <div class="my-2 flex justify-between items-center">
+      <h2 class="text-2xl">
+        {{ book.author }}
+      </h2>
+
+      <div class="flex-0 font-thin">
+        <span> Aggiunto il {{ toLocaleDateString(book.creationDate!) }} </span>
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <p>
+      {{ book.plot }}
+    </p>
+
+    <br />
+
+    <p class="font-mono text-sm">
+      Codice ISBN: <code>{{ book.isbn }}</code>
+    </p>
+  </div>
+
+  <div class="flex-1">
+    <div class="flex items-baseline gap-8">
+      <h3 class="text-xl">Letture</h3>
+
+      <app-button (click)="addReading()">Aggiungi lettura</app-button>
+    </div>
+
+    <ul
+      *ngIf="(readingsData$ | async)?.length; else neverRead"
+      class="list-disc"
+    >
+      <li *ngFor="let reading of readingsData$ | async">
+        {{ toLocaleString(reading.creationDate!) }}
+      </li>
+    </ul>
+
+    <ng-template #neverRead
+      ><span class="text-sm font-light"> Libro mai letto </span>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #error> Errore, libro non trovato </ng-template>

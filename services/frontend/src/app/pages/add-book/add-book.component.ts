@@ -5,9 +5,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
-import { heroCheckCircle } from "@ng-icons/heroicons/outline";
+import { heroArrowLeft, heroCheckCircle } from "@ng-icons/heroicons/outline";
 import { take } from "rxjs";
 import { BooksInsertInput } from "../../../graphql/graphql";
 import { ButtonComponent } from "../../components/button/button.component";
@@ -18,11 +18,12 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-add-book",
   standalone: true,
-  providers: [provideIcons({ heroCheckCircle })],
+  providers: [provideIcons({ heroCheckCircle, heroArrowLeft })],
   templateUrl: "./add-book.component.html",
   styleUrl: "./add-book.component.scss",
   imports: [
     CommonModule,
+    RouterModule,
     NgIconComponent,
     ButtonComponent,
     ReactiveFormsModule,

@@ -7,6 +7,9 @@ import {
   BooksItem,
   LibraryGQL,
   OrderDirection,
+  ReadingInsertGQL,
+  ReadingsGQL,
+  ReadingsItem,
   SaveBookIntoUserLibraryGQL,
   UsersToBooksSelectItem,
 } from "../../graphql/graphql";
@@ -17,6 +20,8 @@ import {
 export class LibraryService {
   constructor(
     private booksGQL: BooksGQL,
+    private readingsGQL: ReadingsGQL,
+    private insertReadingGQL: ReadingInsertGQL,
     private libraryGQL: LibraryGQL,
     private insertBookGQL: BookInsertGQL,
     private saveBookGQL: SaveBookIntoUserLibraryGQL
@@ -75,5 +80,32 @@ export class LibraryService {
         return this.assignBookToUserLibrary(newBook.id, userId);
       })
     );
+  }
+
+  getReadingsOfBooksByUser(bookId: number, userId: number) {
+    return this.readingsGQL
+      .fetch({
+        orderBy: {
+          creationDate: {
+            direction: OrderDirection.Desc,
+            priority: 1,
+          },
+        },
+        where: {
+          bookId: {
+            eq: bookId,
+          },
+          userId: {
+            eq: userId,
+          },
+        },
+      })
+      .pipe(map((res) => res.data.readings as ReadingsItem[]));
+  }
+
+  addReadingOfBookByUser(bookId: number, userId: number) {
+    return this.insertReadingGQL
+      .mutate({ values: { bookId, userId } })
+      .pipe(map((res) => res.data?.insertIntoReadingsSingle as ReadingsItem));
   }
 }
