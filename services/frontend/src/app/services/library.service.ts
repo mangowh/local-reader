@@ -11,6 +11,7 @@ import {
   ReadingsGQL,
   ReadingsItem,
   SaveBookIntoUserLibraryGQL,
+  RemoveBookFromUserLibraryGQL,
   UsersToBooksSelectItem,
 } from "../../graphql/graphql";
 
@@ -24,7 +25,8 @@ export class LibraryService {
     private insertReadingGQL: ReadingInsertGQL,
     private libraryGQL: LibraryGQL,
     private insertBookGQL: BookInsertGQL,
-    private saveBookGQL: SaveBookIntoUserLibraryGQL
+    private saveBookGQL: SaveBookIntoUserLibraryGQL,
+    private removeBookGQL: RemoveBookFromUserLibraryGQL
   ) {}
 
   getBookById(bookId: number) {
@@ -72,6 +74,19 @@ export class LibraryService {
 
   assignBookToUserLibrary(bookId: number, userId: number) {
     return this.saveBookGQL.mutate({ values: { bookId, userId } });
+  }
+
+  unassignBookToUserLibrary(bookId: number, userId: number) {
+    return this.removeBookGQL.mutate({
+      where: {
+        bookId: {
+          eq: bookId,
+        },
+        userId: {
+          eq: userId,
+        },
+      },
+    });
   }
 
   addBookToUserLibrary(book: BooksInsertInput, userId: number) {

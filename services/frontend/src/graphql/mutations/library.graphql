@@ -26,3 +26,10 @@ mutation ReadingInsert($values: ReadingsInsertInput!) {
     creationDate
   }
 }
+
+mutation RemoveBookFromUserLibrary($where: UsersToBooksFilters) {
+  deleteFromUsersToBooks(where: $where) {
+    bookId
+    userId
+  }
+}

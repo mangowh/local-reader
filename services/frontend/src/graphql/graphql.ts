@@ -1499,6 +1499,13 @@ export type ReadingInsertMutationVariables = Exact<{
 
 export type ReadingInsertMutation = { insertIntoReadingsSingle?: { bookId?: number | null, userId?: number | null, id: number, creationDate?: string | null } | null };
 
+export type RemoveBookFromUserLibraryMutationVariables = Exact<{
+  where?: InputMaybe<UsersToBooksFilters>;
+}>;
+
+
+export type RemoveBookFromUserLibraryMutation = { deleteFromUsersToBooks: Array<{ bookId?: number | null, userId?: number | null }> };
+
 export type LibraryQueryVariables = Exact<{
   where?: InputMaybe<UsersToBooksFilters>;
   orderBy?: InputMaybe<UsersToBooksOrderBy>;
@@ -1595,6 +1602,25 @@ export const ReadingInsertDocument = gql`
   })
   export class ReadingInsertGQL extends Apollo.Mutation<ReadingInsertMutation, ReadingInsertMutationVariables> {
     document = ReadingInsertDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RemoveBookFromUserLibraryDocument = gql`
+    mutation RemoveBookFromUserLibrary($where: UsersToBooksFilters) {
+  deleteFromUsersToBooks(where: $where) {
+    bookId
+    userId
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RemoveBookFromUserLibraryGQL extends Apollo.Mutation<RemoveBookFromUserLibraryMutation, RemoveBookFromUserLibraryMutationVariables> {
+    document = RemoveBookFromUserLibraryDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
