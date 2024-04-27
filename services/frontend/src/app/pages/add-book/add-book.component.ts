@@ -20,7 +20,7 @@ import {
 })
 export class AddBookComponent {
   form = new FormGroup({
-    name: new FormControl(""),
+    title: new FormControl(""),
     author: new FormControl(""),
     isbn: new FormControl(""),
     plot: new FormControl(""),
@@ -29,6 +29,6 @@ export class AddBookComponent {
   constructor(private libraryService: LibraryService) {}
 
   addBookToUserLibrary($event: MouseEvent) {
-    console.log($event, this.form.getRawValue());
+    this.libraryService.addBookToUserLibrary(this.form.getRawValue() as any, 1);
   }
 }

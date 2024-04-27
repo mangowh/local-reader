@@ -1314,6 +1314,13 @@ export type UsersUsersToBooksRelationOrder = {
   userId?: InputMaybe<InnerOrder>;
 };
 
+export type BookInsertMutationVariables = Exact<{
+  values: BooksInsertInput;
+}>;
+
+
+export type BookInsertMutation = { __typename?: 'Mutation', insertIntoBooksSingle?: { __typename?: 'MutationReturn', isSuccess: boolean } | null };
+
 export type LibraryQueryVariables = Exact<{
   where?: InputMaybe<UsersToBooksFilters>;
 }>;
@@ -1326,6 +1333,24 @@ export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'UsersSelectItem', id: number, firstName?: string | null, lastName?: string | null }> };
 
+export const BookInsertDocument = gql`
+    mutation BookInsert($values: BooksInsertInput!) {
+  insertIntoBooksSingle(values: $values) {
+    isSuccess
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class BookInsertGQL extends Apollo.Mutation<BookInsertMutation, BookInsertMutationVariables> {
+    document = BookInsertDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const LibraryDocument = gql`
     query Library($where: UsersToBooksFilters) {
   userstobooks(where: $where) {
