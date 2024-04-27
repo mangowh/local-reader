@@ -1,0 +1,11 @@
+services:
+  backend:
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+
+  database:
+    command: ["postgres", "-c", "log_statement=all"] 
+    ports:
+      - 5432:5432

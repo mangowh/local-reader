@@ -11,20 +11,14 @@ services:
     build: ./services/backend
     environment:
       - DB_HOST=database
-      - NODE_ENV=development # TODO DISABILITARE IN PRODUZIONE
-    ports:
-      - 3000:3000  # TODO DISABILITARE IN PRODUZIONE
     restart: always
 
   database:
     image: postgres:16-alpine
-    command: ["postgres", "-c", "log_statement=all"] # TODO DISABILITARE IN PRODUZIONE
     environment:
       - POSTGRES_DB=hastega
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-    ports:
-      - 5432:5432
     volumes:
       - database_postgres-data:/var/lib/postgresql/data
     restart: always
