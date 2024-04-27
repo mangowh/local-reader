@@ -1,20 +1,17 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, startWith } from "rxjs";
-import { UsersSelectItem } from "../../graphql/graphql";
 import { Router } from "@angular/router";
+import { BehaviorSubject, map } from "rxjs";
+import { UsersSelectItem } from "../../graphql/graphql";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  sessionStorageKey = "hastegaLoginKey";
+  private sessionStorageKey = "hastegaLoginKey";
 
   currentUser$ = new BehaviorSubject<UsersSelectItem | null>(null);
 
-  isLoggedIn$ = this.currentUser$.pipe(
-    startWith(false),
-    map((user) => !!user)
-  );
+  isLoggedIn$ = this.currentUser$.pipe(map((user) => !!user));
 
   constructor(private router: Router) {
     this.currentUser$.next(this.getCurrentUser());
@@ -32,7 +29,7 @@ export class AuthService {
 
   logout() {
     this.setCurrentUser(null);
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 
   getCurrentUser() {

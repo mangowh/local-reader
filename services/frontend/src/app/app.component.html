@@ -16,13 +16,7 @@
   </div>
 
   <div class="flex-1 overflow-auto pt-12 px-16 pb-4">
-    <ng-component *ngIf="isLoggedIn$ | async; else login">
-      <router-outlet></router-outlet>
-    </ng-component>
-
-    <ng-template #login>
-      <app-login></app-login>
-    </ng-template>
+    <router-outlet></router-outlet>
   </div>
 
   <div class="flex-0 h-24 flex justify-center items-center px-4 border-t-2">
