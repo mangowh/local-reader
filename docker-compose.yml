@@ -4,7 +4,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./data/frontend/nginx-cache:/var/cache/nginx
+      - frontend_nginx-cache:/var/cache/nginx
     restart: always
 
   backend:
@@ -24,5 +24,9 @@ services:
     ports:
       - 3306:3306 # TODO DISABILITARE IN PRODUZIONE
     volumes:
-      - ./data/database:/var/lib/mysql
+      - database:/var/lib/mysql
     restart: always
+
+volumes:
+  database:
+  frontend_nginx-cache:
