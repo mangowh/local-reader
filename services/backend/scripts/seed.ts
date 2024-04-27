@@ -3,7 +3,7 @@ import "dotenv/config";
 import { faker } from "@faker-js/faker";
 import * as mysql from "mysql2/promise";
 import { books, users, usersToBooks } from "../src/db/schema";
-import { dbConfig } from "../src/config";
+import { dbConfig, isDev } from "../src/config";
 import { drizzle } from "drizzle-orm/mysql2";
 import { count } from "drizzle-orm";
 
@@ -15,7 +15,7 @@ function getRandomInt(min: number, max: number) {
 
 const main = async () => {
   const connection = await mysql.createConnection(dbConfig);
-  const db = drizzle(connection, { logger: true });
+  const db = drizzle(connection, { logger: isDev });
 
   console.log("\nSeeding del database...\n");
 
