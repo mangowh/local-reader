@@ -1,14 +1,14 @@
 import "dotenv/config";
 
-import { drizzle } from "drizzle-orm/mysql2";
-import { migrate } from "drizzle-orm/mysql2/migrator";
-import * as mysql from "mysql2/promise";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { migrate } from "drizzle-orm/postgres-js/migrator";
 import path from "path";
+import postgres from "postgres";
 import { dbConfig, isDev } from "../src/config";
 
 (async () => {
-  const connection = await mysql.createConnection(dbConfig);
-  const db = drizzle(connection, { logger: isDev });
+  const client = postgres({ ...dbConfig, max: 1 });
+  const db = drizzle(client, { logger: isDev });
 
   console.log("\nApplico migrazioni...\n");
 
@@ -16,5 +16,5 @@ import { dbConfig, isDev } from "../src/config";
 
   console.log("\nMigrazioni applicate!\n");
 
-  await connection.end();
+  await client.end();
 })();

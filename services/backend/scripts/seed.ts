@@ -1,11 +1,12 @@
 import "dotenv/config";
 
 import { faker } from "@faker-js/faker";
-import * as mysql from "mysql2/promise";
-import { books, users, usersToBooks } from "../src/db/schema";
-import { dbConfig, isDev } from "../src/config";
-import { drizzle } from "drizzle-orm/mysql2";
 import { count } from "drizzle-orm";
+import { dbConfig, isDev } from "../src/config";
+import { books, users, usersToBooks } from "../src/db/schema";
+
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -14,8 +15,8 @@ function getRandomInt(min: number, max: number) {
 }
 
 const main = async () => {
-  const connection = await mysql.createConnection(dbConfig);
-  const db = drizzle(connection, { logger: isDev });
+  const client = postgres({ ...dbConfig, max: 1 });
+  const db = drizzle(client, { logger: isDev });
 
   console.log("\nSeeding del database...\n");
 
@@ -91,7 +92,7 @@ const main = async () => {
 
   console.log("\nSeeding completato!\n");
 
-  await connection.end();
+  await client.end();
 };
 
 main();

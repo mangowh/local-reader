@@ -4,11 +4,11 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import cors from "cors";
 import { buildSchema } from "drizzle-graphql";
-import { drizzle } from "drizzle-orm/mysql2";
 import express from "express";
-import * as mysql from "mysql2/promise";
 import { dbConfig, isDev } from "./config";
 import * as dbSchema from "./db/schema";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 
 const port = 3000;
 
@@ -16,11 +16,11 @@ const app = express();
 app.use(express.json());
 
 const main = async () => {
-  const connectionPooler = await mysql.createPool(dbConfig);
+  const client = postgres(dbConfig);
 
-  const db = drizzle(connectionPooler, {
+  const db = drizzle(client, {
     schema: dbSchema,
-    mode: "default",
+    // mode: "default",
     logger: isDev,
   });
 
