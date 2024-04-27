@@ -36,6 +36,7 @@
             <div class="flex justify-evenly">
               <div
                 class="p-2 border rounded-full hover:bg-slate-50 flex justify-center align-middle cursor-pointer"
+                [routerLink]="['/books', item.book?.id]"
               >
                 <ng-icon name="heroMagnifyingGlass"></ng-icon>
               </div>

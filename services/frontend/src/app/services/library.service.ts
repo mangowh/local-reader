@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
-import { map, of, switchMap } from "rxjs";
+import { map, switchMap } from "rxjs";
 import {
   BookInsertGQL,
+  BooksGQL,
   BooksInsertInput,
   BooksItem,
   LibraryGQL,
+  OrderDirection,
   SaveBookIntoUserLibraryGQL,
   UsersToBooksSelectItem,
 } from "../../graphql/graphql";
@@ -14,10 +16,29 @@ import {
 })
 export class LibraryService {
   constructor(
+    private booksGQL: BooksGQL,
     private libraryGQL: LibraryGQL,
     private insertBookGQL: BookInsertGQL,
     private saveBookGQL: SaveBookIntoUserLibraryGQL
   ) {}
+
+  getBookById(bookId: number) {
+    return this.booksGQL
+      .fetch({
+        orderBy: {
+          creationDate: {
+            direction: OrderDirection.Desc,
+            priority: 1,
+          },
+        },
+        where: {
+          id: {
+            eq: bookId,
+          },
+        },
+      })
+      .pipe(map((res) => (res.data.books[0] as BooksItem) ?? null));
+  }
 
   getBooksOfUser(userId: number) {
     return this.libraryGQL
@@ -26,7 +47,7 @@ export class LibraryService {
           where: { userId: { eq: userId } },
           orderBy: {
             creationDate: {
-              direction: "desc",
+              direction: OrderDirection.Desc,
               priority: 1,
             },
           },

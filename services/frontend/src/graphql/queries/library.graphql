@@ -15,10 +15,13 @@ query Library($where: UsersToBooksFilters, $orderBy: UsersToBooksOrderBy) {
   }
 }
 
-mutation SaveBookIntoUserLibrary($values: UsersToBooksInsertInput!) {
-  insertIntoUsersToBooksSingle(values: $values) {
-    bookId
+query Books($orderBy: BooksOrderBy, $where: BooksFilters) {
+  books(orderBy: $orderBy, where: $where) {
+    author
     creationDate
-    userId
+    title
+    id
+    isbn
+    plot
   }
 }

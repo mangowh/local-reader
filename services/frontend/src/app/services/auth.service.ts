@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, map, startWith } from "rxjs";
 import { UsersSelectItem } from "../../graphql/graphql";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,7 @@ export class AuthService {
     map((user) => !!user)
   );
 
-  constructor() {
+  constructor(private router: Router) {
     this.currentUser$.next(this.getCurrentUser());
   }
 
@@ -31,6 +32,7 @@ export class AuthService {
 
   logout() {
     this.setCurrentUser(null);
+    this.router.navigate(["/"]);
   }
 
   getCurrentUser() {

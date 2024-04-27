@@ -9,3 +9,11 @@ mutation BookInsert($values: BooksInsertInput!) {
     deletionDate
   }
 }
+
+mutation SaveBookIntoUserLibrary($values: UsersToBooksInsertInput!) {
+  insertIntoUsersToBooksSingle(values: $values) {
+    bookId
+    creationDate
+    userId
+  }
+}
