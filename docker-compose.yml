@@ -17,16 +17,18 @@ services:
     restart: always
 
   database:
-    image: mysql:8
+    image: postgres:16-alpine
+    command: ["postgres", "-c", "log_statement=all"] # TODO DISABILITARE IN PRODUZIONE
     environment:
-      - MYSQL_DATABASE=hastega
-      - MYSQL_ROOT_PASSWORD=root
+      - POSTGRES_DB=hastega
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
     ports:
-      - 3306:3306 # TODO DISABILITARE IN PRODUZIONE
+      - 5432:5432
     volumes:
-      - database:/var/lib/mysql
+      - database_postgres-data:/var/lib/postgresql/data
     restart: always
 
 volumes:
-  database:
+  database_postgres-data:
   frontend_nginx-cache:

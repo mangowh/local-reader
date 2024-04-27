@@ -4,7 +4,7 @@
     "check": "tsc --noEmit",
     "start": "npm run migration:apply && npm run db:seed && ts-node --transpileOnly src/index.ts",
     "dev": "cross-env NODE_ENV=development ts-node ./src/index.ts",
-    "migration:generate": "drizzle-kit generate:mysql",
+    "migration:generate": "drizzle-kit generate:pg",
     "migration:apply": "ts-node ./scripts/migrate.ts",
     "db:seed": "ts-node ./scripts/seed.ts"
   },
@@ -17,12 +17,13 @@
     "drizzle-orm": "^0.30.9",
     "express": "^4.19.2",
     "graphql": "^16.8.1",
-    "mysql2": "^3.9.7"
+    "pg": "^8.11.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
+    "@types/pg": "^8.11.5",
     "cross-env": "^7.0.3",
     "drizzle-kit": "^0.20.17",
     "ts-node": "^10.9.2",

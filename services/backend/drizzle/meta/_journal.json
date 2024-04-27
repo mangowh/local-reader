@@ -1,12 +1,12 @@
 {
   "version": "5",
-  "dialect": "mysql",
+  "dialect": "pg",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1714141642501,
-      "tag": "0000_tearful_old_lace",
+      "when": 1714214751475,
+      "tag": "0000_classy_arclight",
       "breakpoints": true
     }
   ]

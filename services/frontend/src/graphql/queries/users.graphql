@@ -5,3 +5,11 @@ query Users {
     lastName
   }
 }
+
+query User($where: UsersFilters) {
+  usersSingle(where: $where) {
+    firstName
+    lastName
+    email
+  }
+}

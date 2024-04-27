@@ -1,39 +1,53 @@
 import "dotenv/config";
 
 import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
+import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { buildSchema } from "drizzle-graphql";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/node-postgres";
 import express from "express";
-import * as mysql from "mysql2/promise";
+import { Pool } from "pg";
 import { dbConfig, isDev } from "./config";
 import * as dbSchema from "./db/schema";
 
 const port = 3000;
 
-const app = express();
-app.use(express.json());
-
 const main = async () => {
-  const connectionPooler = await mysql.createPool(dbConfig);
+  const client = new Pool(dbConfig);
 
-  const db = drizzle(connectionPooler, {
+  const db = drizzle(client, {
     schema: dbSchema,
-    mode: "default",
     logger: isDev,
   });
 
   const { schema } = buildSchema(db);
 
+  const app = express();
+  app.use(express.json());
+
   if (isDev) {
     app.use(cors());
   }
 
-  const server = new ApolloServer({ schema });
-  const { url } = await startStandaloneServer(server, { listen: { port } });
+  const server = new ApolloServer({ schema, introspection: true });
 
-  console.log(`\nAPI GraphQL in ascolto su ${url}\n`);
+  await server.start();
+
+  app.use(
+    "/",
+    (req, res, next) => {
+      if (req.body?.query && typeof req.body.query === "string") {
+        req.body.query = req.body.query.replace("__typename", "");
+      }
+
+      next();
+    },
+    expressMiddleware(server)
+  );
+
+  app.listen(port, () => {
+    console.log("Applicazione avviata sulla porta ", port);
+  });
 };
 
 main();

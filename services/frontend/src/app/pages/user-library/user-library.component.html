@@ -1,7 +1,7 @@
-<div class="w-full relative p-16">
-  <div class="mb-2 flex justify-between">
+<div class="h-full w-full flex flex-col gap-8">
+  <div class="flex-0 flex justify-between">
     <h3 class="text-xl font-semibold">
-      Libreria di {{ books[0].user?.firstName }}
+      Libreria di {{ (this.currentUser$ | async)?.firstName }}
     </h3>
 
     <div>
@@ -15,34 +15,38 @@
     </div>
   </div>
 
-  <div class="rounded-xl overflow-hidden border shadow-xl">
+  <div class="rounded-xl overflow-auto border shadow-xl">
     <table class="table-fixed w-full text-sm text-left text-gray-500">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <thead class="text-xs text-gray-700 uppercase bg-slate-50">
         <tr>
           <th scope="col" class="px-6 py-3">Titolo</th>
           <th scope="col" class="px-6 py-3">Autore</th>
-          <th scope="col" class="px-6 py-3">Trama</th>
           <th scope="col" class="px-6 py-3">ISBN</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of books" class="bg-white border-b">
+        <tr *ngFor="let item of books$ | async" class="bg-white border-b">
           <td scope="row" class="px-6 py-4 font-medium text-gray-900">
             {{ item.book?.title }}
           </td>
           <td class="px-6 py-4">{{ item.book?.author }}</td>
-          <td class="px-6 py-4 max-w-64 has-tooltip">
-            <div class="w-full truncate">
-              {{ item.book?.plot }}
-            </div>
+          <td class="px-6 py-4">{{ item.book?.isbn }}</td>
+          <td>
+            <div class="flex justify-evenly">
+              <div
+                class="p-2 border rounded-full hover:bg-slate-50 flex justify-center align-middle cursor-pointer"
+              >
+                <ng-icon name="heroMagnifyingGlass"></ng-icon>
+              </div>
 
-            <div class="tooltip rounded shadow-lg bg-white p-4 max-w-64">
-              {{ item.book?.plot }}
+              <div
+                class="p-2 border rounded-full hover:bg-slate-50 flex justify-center align-middle cursor-pointer"
+              >
+                <ng-icon name="heroXMark"></ng-icon>
+              </div>
             </div>
           </td>
-          <td class="px-6 py-4">{{ item.book?.isbn }}</td>
-          <td></td>
         </tr>
       </tbody>
     </table>

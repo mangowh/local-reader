@@ -1,5 +1,11 @@
 mutation BookInsert($values: BooksInsertInput!) {
   insertIntoBooksSingle(values: $values) {
-    isSuccess
+    id
+    title
+    author
+    isbn
+    plot
+    creationDate
+    deletionDate
   }
 }

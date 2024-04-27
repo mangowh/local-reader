@@ -1,16 +1,15 @@
 import { relations } from "drizzle-orm";
 import {
   bigint,
-  mysqlTable,
+  pgTable,
   primaryKey,
   serial,
   text,
   timestamp,
   varchar,
-} from "drizzle-orm/mysql-core";
-import { sql } from "drizzle-orm/sql";
+} from "drizzle-orm/pg-core";
 
-export const users = mysqlTable("users", {
+export const users = pgTable("users", {
   id: serial("id").primaryKey(),
 
   firstName: text("first_name"),
@@ -25,21 +24,15 @@ export const usersRelations = relations(users, ({ many }) => ({
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 
-export const readings = mysqlTable(
+export const readings = pgTable(
   "readings",
   {
     id: serial("id"),
 
-    userId: bigint("user_id", { mode: "number", unsigned: true }).references(
-      () => users.id
-    ),
-    bookId: bigint("book_id", { mode: "number", unsigned: true }).references(
-      () => books.id
-    ),
+    userId: bigint("user_id", { mode: "number" }).references(() => users.id),
+    bookId: bigint("book_id", { mode: "number" }).references(() => books.id),
 
-    creationDate: timestamp("creation_date")
-      .notNull()
-      .default(sql`CURRENT_TIMESTAMP`),
+    creationDate: timestamp("creation_date").defaultNow(),
   },
   (table) => {
     return {
@@ -48,19 +41,13 @@ export const readings = mysqlTable(
   }
 );
 
-export const usersToBooks = mysqlTable(
+export const usersToBooks = pgTable(
   "usersToBooks",
   {
-    userId: bigint("user_id", { mode: "number", unsigned: true }).references(
-      () => users.id
-    ),
-    bookId: bigint("book_id", { mode: "number", unsigned: true }).references(
-      () => books.id
-    ),
+    userId: bigint("user_id", { mode: "number" }).references(() => users.id),
+    bookId: bigint("book_id", { mode: "number" }).references(() => books.id),
 
-    creationDate: timestamp("creation_date")
-      .notNull()
-      .default(sql`CURRENT_TIMESTAMP`),
+    creationDate: timestamp("creation_date").defaultNow(),
   },
   (table) => {
     return {
@@ -80,11 +67,10 @@ export const usersToBooksRelations = relations(usersToBooks, ({ one }) => ({
   }),
 }));
 
-
 export type UsersToBooks = typeof usersToBooks.$inferSelect;
 export type NewUsersToBooks = typeof usersToBooks.$inferInsert;
 
-export const books = mysqlTable("books", {
+export const books = pgTable("books", {
   id: serial("id").primaryKey(),
 
   title: varchar("title", { length: 255 }).notNull(),
@@ -93,9 +79,7 @@ export const books = mysqlTable("books", {
 
   plot: text("plot"),
 
-  creationDate: timestamp("creation_date")
-    .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+  creationDate: timestamp("creation_date").defaultNow(),
   deletionDate: timestamp("deletion_date"),
 });
 
