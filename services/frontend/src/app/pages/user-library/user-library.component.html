@@ -1,4 +1,20 @@
 <div class="w-full relative p-16">
+  <div class="mb-2 flex justify-between">
+    <h3 class="text-xl font-semibold">
+      Libreria di {{ books[0].user?.firstName }}
+    </h3>
+
+    <div>
+      <span
+        [routerLink]="['./add']"
+        class="hover:underline cursor-pointer flex items-center"
+      >
+        <ng-icon name="heroPlusCircle"></ng-icon>
+        Aggiungi libro
+      </span>
+    </div>
+  </div>
+
   <div class="rounded-xl overflow-hidden border shadow-xl">
     <table class="table-fixed w-full text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">

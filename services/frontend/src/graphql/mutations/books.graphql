@@ -1,0 +1,5 @@
+mutation BookInsert($values: BooksInsertInput!) {
+  insertIntoBooksSingle(values: $values) {
+    isSuccess
+  }
+}

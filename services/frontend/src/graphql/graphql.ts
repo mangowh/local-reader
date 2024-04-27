@@ -1319,7 +1319,7 @@ export type LibraryQueryVariables = Exact<{
 }>;
 
 
-export type LibraryQuery = { __typename?: 'Query', userstobooks: Array<{ __typename?: 'UsersToBooksSelectItem', book?: { __typename?: 'UsersToBooksBookRelation', author: string, id: number, isbn: string, plot?: string | null, title: string } | null }> };
+export type LibraryQuery = { __typename?: 'Query', userstobooks: Array<{ __typename?: 'UsersToBooksSelectItem', book?: { __typename?: 'UsersToBooksBookRelation', author: string, id: number, isbn: string, plot?: string | null, title: string } | null, user?: { __typename?: 'UsersToBooksUserRelation', firstName?: string | null, lastName?: string | null } | null }> };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1335,6 +1335,10 @@ export const LibraryDocument = gql`
       isbn
       plot
       title
+    }
+    user {
+      firstName
+      lastName
     }
   }
 }

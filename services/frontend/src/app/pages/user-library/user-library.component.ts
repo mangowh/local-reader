@@ -1,13 +1,16 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, RouterModule } from "@angular/router";
+import { NgIconComponent, provideIcons } from "@ng-icons/core";
+import { heroPlusCircle } from "@ng-icons/heroicons/outline";
 import { UsersToBooksSelectItem } from "../../../graphql/graphql";
 import { LibraryService } from "../../services/library.service";
-import { ActivatedRoute } from "@angular/router";
-import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-user-library",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, NgIconComponent],
+  providers: [provideIcons({ heroPlusCircle })],
   templateUrl: "./user-library.component.html",
   styleUrl: "./user-library.component.scss",
 })

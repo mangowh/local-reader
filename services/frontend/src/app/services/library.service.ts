@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
-import { LibraryGQL, UsersToBooksSelectItem } from "../../graphql/graphql";
+import {
+  BooksInsertInput,
+  LibraryGQL,
+  UsersToBooksSelectItem,
+} from "../../graphql/graphql";
 
 @Injectable({
   providedIn: "root",
@@ -14,5 +18,9 @@ export class LibraryService {
       .pipe(
         map((result) => result.data.userstobooks as UsersToBooksSelectItem[])
       );
+  }
+
+  addBookToUserLibrary(book: BooksInsertInput, userId: number) {
+    console.log("TODO");
   }
 }

@@ -7,5 +7,9 @@ query Library($where: UsersToBooksFilters) {
       plot
       title
     }
+    user {
+      firstName
+      lastName
+    }
   }
 }

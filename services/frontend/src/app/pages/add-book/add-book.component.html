@@ -1,0 +1,27 @@
+<div class="w-full relative p-16">
+  <div class="mb-8 flex justify-between">
+    <h3 class="text-xl font-semibold">Aggiungi un libro</h3>
+  </div>
+
+  <div class="rounded-xl overflow-hidden border shadow-xl p-8">
+    <form [formGroup]="form" class="flex flex-col">
+      <div class="flex justify-between mb-8">
+        <input formControlName="name" placeholder="Nome*" required />
+        <input formControlName="author" placeholder="Autore*" required />
+        <input formControlName="isbn" placeholder="ISBN" />
+      </div>
+
+      <textarea
+        formControlName="plot"
+        class="h-24 mb-8"
+        placeholder="Trama"
+      ></textarea>
+
+      <div class="flex justify-end">
+        <app-button (click)="addBookToUserLibrary($event)"
+          >Conferma <ng-icon name="heroCheckCircle"></ng-icon
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>
