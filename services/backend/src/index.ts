@@ -46,7 +46,7 @@ const main = async () => {
   );
 
   app.listen(port, "0.0.0.0", () => {
-    console.log("Applicazione avviata sulla porta ", port);
+    console.log("Servizio in ascolto sulla porta " + port);
   });
 };
 
