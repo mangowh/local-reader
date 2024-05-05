@@ -1,4 +1,6 @@
-# Prova Tecnica Tambellini - Hastega
+# Local reader
+
+App web per segnarsi letture effettuate
 
 Requisiti:
 
